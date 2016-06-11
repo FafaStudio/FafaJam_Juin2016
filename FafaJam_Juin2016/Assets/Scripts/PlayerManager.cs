@@ -8,11 +8,13 @@ public class PlayerManager : MonoBehaviour {
 	public Vector2 speed = new Vector2(20f, 20f); 
 	private float movementX = 10f;
 	private float movementY = 10f;
+    public bool isJumping = true;
+    public float jumpDuration = 0.1f;
+    public float jumpStart = 0f;
 	public int maxPv;
 	private int curPv;
 
-
-	private Animator animManager;
+    private Animator animManager;
 
 	//private WeaponManager[] weapon;
 
@@ -43,8 +45,8 @@ public class PlayerManager : MonoBehaviour {
 		if (isDead)
 			return;
 		calculMovement ();
-		//shoot ();
-	}
+        //shoot ();
+    }
 
 	void FixedUpdate(){
 		doMovement ();
@@ -54,17 +56,32 @@ public class PlayerManager : MonoBehaviour {
 	//MOVEMENT________________________________________________________________________________________________________________
 
 	private void calculMovement(){
-		if (Input.GetKey (KeyCode.D)) {
+		if (Input.GetKey (KeyCode.D)) {//mouvements latéraux
 			speed.x = movementX;
 		} else if (Input.GetKey (KeyCode.Q)) {
 			speed.x = -movementX;
 		} else {
 			speed.x = 0;
 		}
-		speed.y = 0;
-	}
 
-	private void doMovement(){
+        if ((Input.GetKey(KeyCode.Space) && !isJumping))//Jump
+        {
+            speed.y = movementY;
+            isJumping = true;
+            jumpStart = Time.time;
+        }
+        else if (jumpStart > 1f && Time.time - jumpStart < jumpDuration && isJumping)
+        {
+            speed.y = movementY;
+        }
+        else
+        {
+            speed.y = 0;
+        }
+    }
+
+
+    private void doMovement(){
 		body.velocity = speed;
 	}
 
@@ -90,6 +107,14 @@ public class PlayerManager : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col){
 	}
+
+
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Sol" ){
+            isJumping = false;
+        }
+    }
 
 
 	public void shoot(){

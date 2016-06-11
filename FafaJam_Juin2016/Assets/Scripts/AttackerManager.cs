@@ -4,12 +4,14 @@ using System.Collections;
 public class AttackerManager : MonoBehaviour {
     // Use this for initialization
     private WeaponManager weaponManager;
+    private PlayerManager playerManager;
     void Start () {
         weaponManager = gameObject.GetComponent<WeaponManager>();
+        playerManager = gameObject.transform.parent.gameObject.GetComponent<PlayerManager>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         shoot();
 
     }
@@ -20,9 +22,50 @@ public class AttackerManager : MonoBehaviour {
         {
             Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             Vector3 playerPosition = gameObject.transform.position;
-            print(gameObject.transform.position);
+            Vector3 finalPosition;
+            if (playerManager.getSwapPosition())//tireur a gauche
+            {
+                if(mousePosition.x - playerPosition.x >= playerPosition.x)//si dans le dos
+                {
+                    float shotPositionY;
+                    if(mousePosition.y - playerPosition.y >= 0)
+                    {
+                        shotPositionY = 4;
+                    }
+                    else
+                    {
+                        shotPositionY = -4;
+                    }
+                    finalPosition = new Vector3(playerPosition.x, shotPositionY, playerPosition.z);
+                }
+                else
+                {
+                    finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
+                }
+            }
+            else
+            {
+                if (mousePosition.x - playerPosition.x <= playerPosition.x)//si dans le dos
+                {
+                    float shotPositionY;
+                    if (mousePosition.y - playerPosition.y >= 0)
+                    {
+                        shotPositionY = 4;
+                    }
+                    else
+                    {
+                        shotPositionY = -4;
+                    }
+                    finalPosition = new Vector3(playerPosition.x, shotPositionY, playerPosition.z);
+                }
+                else
+                {
+                    finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
+                }
+            }
 
-            weaponManager.directionAttack = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
+
+            weaponManager.directionAttack = finalPosition;
             weaponManager.Attack(false);
         }
     }
@@ -38,13 +81,5 @@ public class AttackerManager : MonoBehaviour {
     }
     if(Input.GetKeyUp(KeyCode.Space))
         animManager.SetBool("Firing", false);*/
-        /*
 
-    mouse_pos = Input.mousePosition;
-     mouse_pos.z = 5.23; //The distance between the camera and object
-     object_pos = Camera.main.WorldToScreenPoint(target.position);
-     mouse_pos.x = mouse_pos.x - object_pos.x;
-     mouse_pos.y = mouse_pos.y - object_pos.y;
-     angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
-     transform.rotation = Quaternion.Euler(Vector3(0, 0, angle));*/
 }

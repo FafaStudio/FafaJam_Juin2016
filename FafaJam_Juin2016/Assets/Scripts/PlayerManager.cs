@@ -8,11 +8,19 @@ public class PlayerManager : MonoBehaviour {
 	public Vector2 speed = new Vector2(20f, 20f); 
 	private float movementX = 10f;
 	private float movementY = 10f;
-    public bool isJumping = true;
-    public float jumpDuration = 0.1f;
-    public float jumpStart = 0f;
+    private bool isJumping = true;
+    private float jumpDuration = 0.1f;
+    private float jumpStart = 0f;
 	public int maxPv;
 	private int curPv;
+
+
+    private bool swapped = false;
+    private float swapTimer = 0f;
+    private float swapDuration = 0.2f;
+
+    public GameObject attacker;
+    public GameObject defender;
 
     private Animator animManager;
 
@@ -45,6 +53,7 @@ public class PlayerManager : MonoBehaviour {
 		if (isDead)
 			return;
 		calculMovement ();
+        doSwap();
         //shoot ();
     }
 
@@ -84,6 +93,42 @@ public class PlayerManager : MonoBehaviour {
     private void doMovement(){
 		body.velocity = speed;
 	}
+
+
+    //SWAP POSITION______________________________________________________________________________________________________________
+
+    public bool getSwapPosition()
+    {
+        return swapped;
+    }
+    private void doSwap()
+    {
+        if (Input.GetKey(KeyCode.E) && Time.time - swapTimer > swapDuration)
+        {
+            swap();
+            swapTimer = Time.time;
+        }
+    }
+    public void swap()
+    {
+        if (swapped)
+        {
+            Vector3 attackerActualPosition = attacker.transform.position;
+            attacker.transform.position = defender.transform.position;
+            defender.transform.position = attackerActualPosition;
+            swapped = false;
+        }
+        else
+        {
+            Vector3 attackerActualPosition = attacker.transform.position;
+            attacker.transform.position = defender.transform.position;
+            defender.transform.position = attackerActualPosition;
+            swapped = true;
+        }
+    }
+    
+
+    
 
 	//GESTION VIE________________________________________________________________________________________________________________
 

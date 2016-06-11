@@ -15,14 +15,17 @@ public class SpawnerManager : MonoBehaviour {
 	private float chronoBasicEnemy;
 	public float setterChronoEnemy = 0f;
 
+	public bool isLeftSpawner;
+
 	void Start () {
 		chronoPowerUp = Random.Range (5f, 30f);
 		chronoBasicEnemy = Random.Range (2f, 6f);
+		chronoBasicEnemy = 1f;
 	}
 
 	void Update () {
-		chronoPowerUp -= Time.deltaTime;
-		spawnPowerUp ();
+		/*chronoPowerUp -= Time.deltaTime;
+		spawnPowerUp ();*/
 
 		if (!isActiveMob)
 			return;
@@ -44,7 +47,11 @@ public class SpawnerManager : MonoBehaviour {
 	public void spawnBasicEnnemy(){
 		if (chronoBasicEnemy <= 0f) {
 			var puTransform = Instantiate(enemyBasic) as Transform;
-			Vector3 newPos = new Vector3 (this.transform.position.x, Random.Range (-3.5f, 3.5f), 0f);
+			Vector3 newPos = new Vector3 (this.transform.position.x, this.transform.position.y, 0f);
+			if (isLeftSpawner) {
+				enemyBasic.GetComponent<BasicEnemy> ().isSpawnedRight = true;
+			} else
+				enemyBasic.GetComponent<BasicEnemy> ().isSpawnedRight = false;
 			puTransform.position = newPos;
 			puTransform.SetParent (this.transform);
 

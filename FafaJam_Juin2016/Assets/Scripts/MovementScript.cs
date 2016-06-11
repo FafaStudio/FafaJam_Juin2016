@@ -18,7 +18,6 @@ public class MovementScript : MonoBehaviour
 	public bool isStopped = false;
 
 	public void Awake(){
-		setDirection(-1, 0);
 		body = this.GetComponent<Rigidbody2D>();
 	}
 

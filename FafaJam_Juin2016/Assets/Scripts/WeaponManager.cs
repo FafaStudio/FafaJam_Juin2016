@@ -10,6 +10,8 @@ public class WeaponManager : MonoBehaviour
 
 	private float shootCooldown;
 
+	public Vector2 directionAttack;
+
 	void Start()
 	{
 		shootCooldown = 0f;
@@ -30,16 +32,16 @@ public class WeaponManager : MonoBehaviour
 			shootCooldown = shootingRate;
 			var shotTransform = Instantiate(shotPrefab) as Transform;
 			shotTransform.position = transform.position;
-
+			shotTransform.gameObject.GetComponent<MovementScript> ().direction = directionAttack;
 			ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
-			if (shot != null)
+			/*if (shot != null)
 			{
 				shot.isEnemyShot = isEnemy;
 				if (!shot.isEnemyShot) {
 					Vector3 bullPosition = new Vector3 (transform.position.x + 10f, transform.position.y+3f, 0f);
 					shotTransform.position = bullPosition;
 				}
-			}
+			}*/
 		}
 	}
 		

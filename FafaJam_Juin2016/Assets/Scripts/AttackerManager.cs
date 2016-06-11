@@ -22,11 +22,14 @@ public class AttackerManager : MonoBehaviour {
         {
             Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             Vector3 playerPosition = gameObject.transform.position;
-<<<<<<< HEAD
             Vector3 finalPosition;
+            print("---------------");
+            print(mousePosition);
+            print(playerPosition);
+            print(new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z));
             if (playerManager.getSwapPosition())//tireur a gauche
             {
-                if(mousePosition.x - playerPosition.x >= playerPosition.x)//si dans le dos
+                if(mousePosition.x - playerPosition.x >= 0)//si dans le dos
                 {
                     float shotPositionY;
                     if(mousePosition.y - playerPosition.y >= 0)
@@ -37,7 +40,7 @@ public class AttackerManager : MonoBehaviour {
                     {
                         shotPositionY = -4;
                     }
-                    finalPosition = new Vector3(playerPosition.x, shotPositionY, playerPosition.z);
+                    finalPosition = new Vector3(0, shotPositionY, playerPosition.z);
                 }
                 else
                 {
@@ -46,7 +49,7 @@ public class AttackerManager : MonoBehaviour {
             }
             else
             {
-                if (mousePosition.x - playerPosition.x <= playerPosition.x)//si dans le dos
+                if (mousePosition.x - playerPosition.x <= 0)//si dans le dos
                 {
                     float shotPositionY;
                     if (mousePosition.y - playerPosition.y >= 0)
@@ -57,15 +60,14 @@ public class AttackerManager : MonoBehaviour {
                     {
                         shotPositionY = -4;
                     }
-                    finalPosition = new Vector3(playerPosition.x, shotPositionY, playerPosition.z);
+                    finalPosition = new Vector3(0, shotPositionY, playerPosition.z);
                 }
                 else
                 {
                     finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
                 }
             }
-=======
->>>>>>> 873f7f9f0ff7d3aa3abed9086ff327034eac0266
+
 
 
             weaponManager.directionAttack = finalPosition;

@@ -20,7 +20,6 @@ public class AttackerManager : MonoBehaviour {
         {
             Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             Vector3 playerPosition = gameObject.transform.position;
-            print(gameObject.transform.position);
 
             weaponManager.directionAttack = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
             weaponManager.Attack(false);

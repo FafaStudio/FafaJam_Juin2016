@@ -12,14 +12,13 @@ public class BasicEnemy : EnemyScript {
 
 	public bool isMoving = false;
 
-	public bool isSpawnedRight = false;
+	private bool isSpawnedRight;
 
 	void Start () {
 		anim = this.GetComponent<Animator> ();
 		weapon = this.GetComponent<WeaponManager> ();
 		maxRate = weapon.shootingRate;
 		movement = this.GetComponent<MovementScript> ();
-		setDirectionAttack ();
 	}
 
 	void Update () {
@@ -45,8 +44,13 @@ public class BasicEnemy : EnemyScript {
 
 		weapon.shootingRate -= Time.deltaTime;
 		if (weapon.shootingRate <= 0) {
+			setDirectionAttack ();
 			doAttack ();
 		}
+	}
+
+	public void setSideSpawned(bool value){
+		isSpawnedRight = value;
 	}
 
 	private void doAttack(){
@@ -67,16 +71,17 @@ public class BasicEnemy : EnemyScript {
 	public void OnTriggerEnter2D(Collider2D coll)
 	{
 		if (coll.gameObject.tag == "TIRPlayer") {
+			Destroy (coll.gameObject);
 			this.pv -= 1;
 			if (this.pv <= 0) {
 			//	manager.updateScore (scoreValue);
-				StartCoroutine (launchDeath ());
+				Destroy(this.gameObject);
 			}
 		}
 	}
 
 	public IEnumerator launchDeath(){
-		anim.SetBool ("isDead", true);
+	//	anim.SetBool ("isDead", true);
 		//this.transform.localScale = new Vector3 (0.4f, 0.4f);
 		yield return new WaitForSeconds (0.2f);
 		Destroy (this.gameObject);

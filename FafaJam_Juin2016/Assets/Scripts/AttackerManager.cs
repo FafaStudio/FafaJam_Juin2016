@@ -22,6 +22,7 @@ public class AttackerManager : MonoBehaviour {
         {
             Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             Vector3 playerPosition = gameObject.transform.position;
+<<<<<<< HEAD
             Vector3 finalPosition;
             if (playerManager.getSwapPosition())//tireur a gauche
             {
@@ -63,6 +64,8 @@ public class AttackerManager : MonoBehaviour {
                     finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
                 }
             }
+=======
+>>>>>>> 873f7f9f0ff7d3aa3abed9086ff327034eac0266
 
 
             weaponManager.directionAttack = finalPosition;

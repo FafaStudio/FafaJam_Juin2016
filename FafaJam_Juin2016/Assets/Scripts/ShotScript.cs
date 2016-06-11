@@ -17,6 +17,7 @@ public class ShotScript : MonoBehaviour {
 	void Start()
 	{
 		savedVelocity = this.GetComponent<Rigidbody2D> ().velocity;
+		Destroy (this.gameObject, 4f);
 	}
 
 	void Update(){

@@ -12,17 +12,18 @@ public class BasicEnemy : EnemyScript {
 
 	public bool isMoving = false;
 
-	public bool isSPpawnedLeft = false;
+	public bool isSpawnedRight = false;
 
 	void Start () {
 		anim = this.GetComponent<Animator> ();
 		weapon = this.GetComponent<WeaponManager> ();
 		maxRate = weapon.shootingRate;
 		movement = this.GetComponent<MovementScript> ();
+		setDirectionAttack ();
 	}
 
 	void Update () {
-		if (!isSPpawnedLeft) {
+		if (isSpawnedRight) {
 			if ((this.transform.position.x - target.transform.position.x) < 6) {
 				movement.isStopped = false;
 				movement.setDirection (1, 0);
@@ -32,10 +33,10 @@ public class BasicEnemy : EnemyScript {
 			} else
 				movement.isStopped = true;
 		} else {
-			if (this.transform.position.x - target.transform.position.x < 6) {
+			if ((target.transform.position.x -this.transform.position.x) < 6) {
 				movement.isStopped = false;
 				movement.setDirection (-1, 0);
-			} else if ((this.transform.position.x - target.transform.position.x) > 7) {
+			} else if ((target.transform.position.x - this.transform.position.x )> 7) {
 				movement.isStopped = false;
 				movement.setDirection (1, 0);
 			}else
@@ -54,6 +55,13 @@ public class BasicEnemy : EnemyScript {
 			weapon.Attack (true);
 			weapon.shootingRate = maxRate;
 		}
+	}
+
+	public void setDirectionAttack(){
+		if (!isSpawnedRight) {
+			weapon.directionAttack = new Vector2(1f, 0f);
+		}else
+			weapon.directionAttack = new Vector2(-1f, 0f);
 	}
 
 	public void OnTriggerEnter2D(Collider2D coll)

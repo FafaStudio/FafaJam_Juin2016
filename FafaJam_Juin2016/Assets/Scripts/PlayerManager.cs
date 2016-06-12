@@ -85,6 +85,8 @@ public class PlayerManager : MonoBehaviour {
             isJumping = true;
             jumpStart = Time.time;
 			attacker.GetComponent<AttackerManager>().setAnimation ("isJumping", true);
+			attacker.GetComponent<AttackerManager> ().arms [0].GetComponent<Animator> ().SetBool ("isJumping", true);
+			attacker.GetComponent<AttackerManager> ().arms [1].GetComponent<Animator> ().SetBool ("isJumping", true);
 			setOmbre (false);
         }
         else if (jumpStart > 1f && Time.time - jumpStart < jumpDuration && isJumping)
@@ -131,7 +133,7 @@ public class PlayerManager : MonoBehaviour {
             defender.transform.position = attackerActualPosition;
 			attacker.transform.localScale = new Vector2 (1, 1);
 			defender.transform.localScale = new Vector2(1, 1);
-			ombres[1].posY = -4.4f;
+			ombres[1].posY = -5.2f;
 
 			print (defender.GetComponentInChildren<Ombre> ().posY.ToString ());
 
@@ -147,7 +149,7 @@ public class PlayerManager : MonoBehaviour {
 			attacker.transform.localScale = new Vector2 (-1, 1);
 			defender.transform.localScale = new Vector2(-1, 1);
 
-			ombres[1].posY = -4.2f;
+			ombres[1].posY = -5f;
 
 			attacker.GetComponent<AttackerManager> ().arms [0].GetComponent<Animator> ().SetBool ("isRight", false);
 			attacker.GetComponent<AttackerManager> ().setAnimation ("isFront", false);
@@ -201,6 +203,8 @@ public class PlayerManager : MonoBehaviour {
         if (col.gameObject.tag == "Sol" ){
             isJumping = false;
 			attacker.GetComponent<AttackerManager>().setAnimation ("isJumping", false);
+			attacker.GetComponent<AttackerManager> ().arms [0].GetComponent<Animator> ().SetBool ("isJumping", false);
+			attacker.GetComponent<AttackerManager> ().arms [1].GetComponent<Animator> ().SetBool ("isJumping", false);
 			setOmbre (true);
         }
     }

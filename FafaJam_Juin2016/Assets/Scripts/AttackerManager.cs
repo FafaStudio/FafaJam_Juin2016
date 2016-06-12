@@ -86,6 +86,7 @@ public class AttackerManager : MonoBehaviour {
             }
 
 			arms [0].GetComponent<Animator> ().SetTrigger ("Firing");
+			arms [1].GetComponent<Animator> ().SetTrigger ("Firing");
 			playerManager.camera.setShake (0.02f);
             weaponManager.directionAttack = finalPosition;
 			weaponManager.AttackWithSpecialPosition (GameObject.Find ("WeaponCanonMorue").transform.position);

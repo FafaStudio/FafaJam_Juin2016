@@ -58,6 +58,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -75,6 +81,7 @@
     <Compile Include="Assets\Scripts\Items\Item_Life_Malus.cs" />
     <Compile Include="Assets\Scripts\Items\SpawnerItem.cs" />
     <Compile Include="Assets\Scripts\MovementScript.cs" />
+    <Compile Include="Assets\Scripts\Ombre.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\ScrollingScript.cs" />
     <Compile Include="Assets\Scripts\ShotScript.cs" />

@@ -4,15 +4,12 @@ using System.Collections;
 public class GrenadeScript : ShotScript {
 
     public float flyingTime;
-    private CircleCollider2D circleCollider2D;
 
 	public override void Start()
 	{
 		base.Start();
 		Destroy (this.gameObject, 3f);
         flyingTime = 2f;
-        circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
-        circleCollider2D.enabled = false;
     }
 
 	void Update(){
@@ -29,23 +26,23 @@ public class GrenadeScript : ShotScript {
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (circleCollider2D.enabled == false && (col.gameObject.tag == "Sol" || col.gameObject.tag == "Enemy"))
+        if (col.gameObject.tag == "Sol" || col.gameObject.tag == "Enemy")
         {
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            circleCollider2D.enabled = true;
-            Destroy(gameObject, 0.1f);
-        }
-        else if(circleCollider2D == true && col.gameObject.tag == "Enemy")
-        {
-            Destroy(col.gameObject);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if(colliders[i].tag == "Enemy")
+                {
+                    Destroy(colliders[i].gameObject);
+                }
+            }
+            Destroy(gameObject);
         }
     }
-
-    public void onColliderEnter2D(Collider2D col)
+    /*private void OnDrawGizmos()//VOIR LA RANGE DU CERCLE
     {
-        if (circleCollider2D == true && col.gameObject.tag == "Enemy")
-        {
-            Destroy(col.gameObject);
-        }
-    }
+        Gizmos.color = Color.red;
+     //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+            Gizmos.DrawWireSphere(transform.position, 2f);
+    }*/
 }

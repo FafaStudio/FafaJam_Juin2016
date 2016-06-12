@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Item_Life_Malus : Item {
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
         this.itemName = "life_malus";
         this.bonus = false;
     }

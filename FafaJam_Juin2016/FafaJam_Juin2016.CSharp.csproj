@@ -71,9 +71,9 @@
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\GrenadeScript.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
-    <Compile Include="Assets\Scripts\Items\ItemGenerator.cs" />
     <Compile Include="Assets\Scripts\Items\Item_Life_Bonus.cs" />
     <Compile Include="Assets\Scripts\Items\Item_Life_Malus.cs" />
+    <Compile Include="Assets\Scripts\Items\SpawnerItem.cs" />
     <Compile Include="Assets\Scripts\MovementScript.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\ScrollingScript.cs" />

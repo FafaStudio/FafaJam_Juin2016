@@ -54,7 +54,7 @@ public class WeaponManager : MonoBehaviour
 		{
 			shootCooldown = shootingRate;
 			var shotTransform = Instantiate(shotPrefab) as Transform;
-			shotTransform.position = this.transform.position;
+            shotTransform.position = new Vector3(this.transform.position.x - 0.35f, this.transform.position.y + 1.05f, +this.transform.position.z) ;
 			//shotTransform.gameObject.GetComponent<MovementScript> ().direction = directionAttack;
 			shotTransform.GetComponent<Rigidbody2D>().velocity = direction;
 		}

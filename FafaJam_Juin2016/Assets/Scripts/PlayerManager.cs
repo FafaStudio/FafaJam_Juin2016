@@ -120,7 +120,7 @@ public class PlayerManager : MonoBehaviour {
             attacker.transform.position = defender.transform.position;
             defender.transform.position = attackerActualPosition;
 			attacker.transform.localScale = new Vector2 (1, 1);
-			defender.transform.localScale = new Vector2(-1, 1);
+			defender.transform.localScale = new Vector2(1, 1);
 
 			attacker.GetComponent<AttackerManager> ().arms [0].GetComponent<Animator> ().SetBool ("isRight", true);
 			attacker.GetComponent<AttackerManager> ().setAnimation ("isFront", true);
@@ -132,7 +132,7 @@ public class PlayerManager : MonoBehaviour {
             attacker.transform.position = defender.transform.position;
             defender.transform.position = attackerActualPosition;
 			attacker.transform.localScale = new Vector2 (-1, 1);
-			defender.transform.localScale = new Vector2(1, 1);
+			defender.transform.localScale = new Vector2(-1, 1);
 
 			attacker.GetComponent<AttackerManager> ().arms [0].GetComponent<Animator> ().SetBool ("isRight", false);
 			attacker.GetComponent<AttackerManager> ().setAnimation ("isFront", false);

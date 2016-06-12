@@ -21,7 +21,7 @@ public class BasicEnemy : EnemyScript {
 		weapon = this.GetComponent<WeaponManager> ();
 		maxRate = weapon.shootingRate;
 		movement = this.GetComponent<MovementScript> ();
-		rangeToPlayer = Random.Range (5f, 9f);
+		rangeToPlayer = Random.Range (4f, 7f);
 	}
 
 	void Update () {

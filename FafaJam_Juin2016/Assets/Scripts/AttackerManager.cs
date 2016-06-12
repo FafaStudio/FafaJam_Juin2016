@@ -135,6 +135,7 @@ public class AttackerManager : MonoBehaviour {
 			arms[0].rotation = Quaternion.Euler (0f, 0f, (Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
 			arms[1].rotation = Quaternion.Euler (0f, 0f, 2.5f*(Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
 			}
+		weaponManager.rotationShoot =  Quaternion.Euler (0f, 0f, (Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
 	}
 
     /*if (Input.GetKey (KeyCode.Space)) {

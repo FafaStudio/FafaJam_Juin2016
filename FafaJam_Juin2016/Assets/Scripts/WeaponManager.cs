@@ -19,7 +19,7 @@ public class WeaponManager : MonoBehaviour
     private float grenadeCooldown;
 
     public Vector2 directionGrenade;
-
+	public Quaternion rotationShoot;
 
 	void Start()
 	{
@@ -68,7 +68,7 @@ public class WeaponManager : MonoBehaviour
 			var shotTransform = Instantiate(shotPrefab) as Transform;
 			shotTransform.position = bullPosition;
 			shotTransform.gameObject.GetComponent<MovementScript> ().direction = directionAttack;
-			ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
+			shotTransform.rotation = rotationShoot;
 		}
 	}	
 

@@ -16,31 +16,42 @@ public class BasicEnemy : EnemyScript {
 
 	private float rangeToPlayer;
 
+	public GameObject bubbleEffect;
+	private float timeBetweenBuble;
+
 	void Start () {
 		anim = this.GetComponent<Animator> ();
 		weapon = this.GetComponent<WeaponManager> ();
 		maxRate = weapon.shootingRate;
 		movement = this.GetComponent<MovementScript> ();
 		rangeToPlayer = Random.Range (4f, 7f);
+		timeBetweenBuble = Random.Range (2f, 4f);
 	}
 
 	void Update () {
+		launchBubleParticle ();
 		if (isSpawnedRight) {
 			if ((this.transform.position.x - target.transform.position.x) < rangeToPlayer) {
 				movement.isStopped = false;
 				movement.setDirection (1, 0);
+				anim.SetBool ("isFront", false);
 			} else if ((this.transform.position.x - target.transform.position.x) > rangeToPlayer+1) {
 				movement.isStopped = false;
 				movement.setDirection (-1, 0);
+				anim.SetBool("isFront", true);
 			} else
 				movement.isStopped = true;
 		} else {
 			if ((target.transform.position.x -this.transform.position.x) < rangeToPlayer) {
 				movement.isStopped = false;
 				movement.setDirection (-1, 0);
+				this.transform.localScale = new Vector2 (-1, 1);
+				anim.SetBool ("isFront", false);
 			} else if ((target.transform.position.x - this.transform.position.x )> rangeToPlayer+1) {
 				movement.isStopped = false;
 				movement.setDirection (1, 0);
+				this.transform.localScale = new Vector2 (-1, 1);
+				anim.SetBool ("isFront", true);
 			}else
 				movement.isStopped = true;
 		}
@@ -58,7 +69,7 @@ public class BasicEnemy : EnemyScript {
 
 	private void doAttack(){
 		if(weapon!=null){
-			//anim.SetTrigger ("Firing");
+			anim.SetTrigger ("Firing");
 			weapon.Attack (true);
 			weapon.shootingRate = maxRate;
 		}
@@ -82,6 +93,20 @@ public class BasicEnemy : EnemyScript {
 			}
 		}
 	}
+
+	public void launchBubleParticle(){
+		if (timeBetweenBuble > 0) {
+			timeBetweenBuble -= Time.deltaTime;
+		} else {
+			if (isSpawnedRight) {//tireur a gauche
+				Instantiate (bubbleEffect, new Vector3 (this.transform.position.x - 0.3f, this.transform.position.y + 1f), Quaternion.identity);
+			}else
+				Instantiate (bubbleEffect, new Vector3 (this.transform.position.x + 0.3f, this.transform.position.y + 1f), Quaternion.identity);
+			timeBetweenBuble = Random.Range (2f, 4f);
+		}
+	}
+
+
 
 	public IEnumerator launchDeath(){
 	//	anim.SetBool ("isDead", true);

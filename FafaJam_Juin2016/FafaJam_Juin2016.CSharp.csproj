@@ -65,16 +65,22 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AttackerManager.cs" />
     <Compile Include="Assets\Scripts\BasicEnemy.cs" />
+    <Compile Include="Assets\Scripts\BubleParticle.cs" />
     <Compile Include="Assets\Scripts\CameraManager.cs" />
     <Compile Include="Assets\Scripts\DefenderManager.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
-    <Compile Include="Assets\Scripts\GrenadeMovementScript.cs" />
     <Compile Include="Assets\Scripts\GrenadeScript.cs" />
+    <Compile Include="Assets\Scripts\Items\Item.cs" />
+    <Compile Include="Assets\Scripts\Items\Item_Life_Bonus.cs" />
+    <Compile Include="Assets\Scripts\Items\Item_Life_Malus.cs" />
+    <Compile Include="Assets\Scripts\Items\SpawnerItem.cs" />
     <Compile Include="Assets\Scripts\MovementScript.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\ScrollingScript.cs" />
     <Compile Include="Assets\Scripts\ShotScript.cs" />
     <Compile Include="Assets\Scripts\SpawnerChief.cs" />
     <Compile Include="Assets\Scripts\SpawnerManager.cs" />
+    <Compile Include="Assets\Scripts\UI\LifeDisplay.cs" />
     <Compile Include="Assets\Scripts\WeaponManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

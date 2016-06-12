@@ -145,12 +145,26 @@ public class PlayerManager : MonoBehaviour {
 
 	//GESTION VIE________________________________________________________________________________________________________________
 
+    public int getPv()
+    {
+        return this.curPv;
+    }
+
 	public void takeDamage(int nbr)
 	{
 		this.curPv -= nbr;
 		camera.setShake (0.3f);
 		testEstMort ();
 	}
+
+    public void pvRegen(int nbr)
+    {
+        this.curPv += nbr;
+        if (this.curPv > this.maxPv)
+        {
+            this.curPv = this.maxPv;
+        }
+    }
 
 	public void testEstMort()
 	{

@@ -3,18 +3,21 @@ using System.Collections;
 
 public class GrenadeScript : ShotScript {
 
-	private float cptVelocity = 5f;
+    public float flyingTime;
 
 	public override void Start()
 	{
 		base.Start();
 		Destroy (this.gameObject, 3f);
-	}
+        flyingTime = 2f;
+    }
 
 	void Update(){
-		if (cptVelocity > 0) {
-			cptVelocity--;
-		} else
+        if(flyingTime > 0)
+        {
+            flyingTime -= Time.deltaTime;
+        }
+        else
 			this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, 0f);
 		if (!isTouching)
 			return;

@@ -82,7 +82,7 @@ public class AttackerManager : MonoBehaviour {
                     finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
                 }
             }
-				
+			
 			playerManager.camera.setShake (0.02f);
             weaponManager.directionAttack = finalPosition;
 			weaponManager.AttackWithSpecialPosition (GameObject.Find ("WeaponCanonMorue").transform.position);

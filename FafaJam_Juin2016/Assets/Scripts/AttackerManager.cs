@@ -10,6 +10,10 @@ public class AttackerManager : MonoBehaviour {
 
 	private Animator animManager;
 
+	public GameObject bubbleEffect;
+	private float timeBetweenBuble;
+
+
     void Start () {
         weaponManager = gameObject.GetComponent<WeaponManager>();
         playerManager = gameObject.transform.parent.gameObject.GetComponent<PlayerManager>();
@@ -17,11 +21,14 @@ public class AttackerManager : MonoBehaviour {
 		arms[0].GetComponent<Animator> ().SetBool ("isRight", true);
 		animManager = this.GetComponent<Animator> ();
 		animManager.SetBool ("isFront", true);
+
+		timeBetweenBuble = Random.Range (2f, 4f);
     }
 
     void Update () {
         shoot();
 		updateArms ();
+		launchBubleParticle ();
     }
 
 	public void setAnimation(string variable, bool value){
@@ -76,9 +83,8 @@ public class AttackerManager : MonoBehaviour {
                 }
             }
 				
-			playerManager.camera.setShake (0.05f);
+			playerManager.camera.setShake (0.02f);
             weaponManager.directionAttack = finalPosition;
-			//weaponManager.Attack (false);
 			weaponManager.AttackWithSpecialPosition (GameObject.Find ("WeaponCanonMorue").transform.position);
 		
         }
@@ -136,6 +142,19 @@ public class AttackerManager : MonoBehaviour {
 			arms[1].rotation = Quaternion.Euler (0f, 0f, 2.5f*(Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
 			}
 		weaponManager.rotationShoot =  Quaternion.Euler (0f, 0f, (Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
+	}
+
+	public void launchBubleParticle(){
+		if (timeBetweenBuble > 0) {
+			timeBetweenBuble -= Time.deltaTime;
+		} else {
+			if (playerManager.getSwapPosition ()) {//tireur a gauche
+				Instantiate (bubbleEffect, new Vector3 (this.transform.position.x - 0.3f, this.transform.position.y + 1f), Quaternion.identity);
+			}else
+
+				Instantiate (bubbleEffect, new Vector3 (this.transform.position.x + 0.3f, this.transform.position.y + 1f), Quaternion.identity);
+			timeBetweenBuble = Random.Range (2f, 4f);
+		}
 	}
 
     /*if (Input.GetKey (KeyCode.Space)) {

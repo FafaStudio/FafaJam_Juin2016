@@ -1,44 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GrenadeScript : MonoBehaviour {
+public class GrenadeScript : ShotScript {
 
-	public int damage = 1;
+	private float cptVelocity = 5f;
 
-	public bool isEnemyShot = false;
-
-	private bool isTouching = false;
-
-	private Vector2 savedVelocity;
-
-	public int speedX = 0;
-	public int speedY = 0;
-
-	void Start()
+	public override void Start()
 	{
-		savedVelocity = this.GetComponent<Rigidbody2D> ().velocity;
+		base.Start();
 		Destroy (this.gameObject, 3f);
 	}
 
 	void Update(){
+		if (cptVelocity > 0) {
+			cptVelocity--;
+		} else
+			this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, 0f);
 		if (!isTouching)
 			return;
 		Destroy (this.gameObject);
-	}
-
-	void OnTriggerEnter2D(Collider2D col){
-		if (col.gameObject.tag == "EndBullet")
-			Destroy (this.gameObject);
-	}
-
-	void OnPauseGame(){
-		savedVelocity = this.GetComponent<Rigidbody2D> ().velocity;
-		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, 0f);
-		this.enabled = false;
-	}
-
-	void OnResumeGame(){
-		this.GetComponent<Rigidbody2D> ().velocity = savedVelocity;
-		this.enabled = true;
 	}
 }

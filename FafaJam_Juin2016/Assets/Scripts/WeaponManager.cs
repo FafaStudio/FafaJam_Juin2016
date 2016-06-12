@@ -12,32 +12,19 @@ public class WeaponManager : MonoBehaviour
 
     public Vector2 directionAttack;
 
-    public Transform grenadePrefab;
-
-    public float grenadeRate = 3f;
-
-    private float grenadeCooldown;
-
-    public Vector2 directionGrenade;
 	public Quaternion rotationShoot;
 
 	void Start()
 	{
 		shootCooldown = 0f;
-        grenadeCooldown = 0f;
 	}
 
 	void Update()
-    {
-        if (shootCooldown > 0)
-        {
-            shootCooldown -= Time.deltaTime;
-        }
-        if (grenadeCooldown > 0)
-        {
-            grenadeCooldown -= Time.deltaTime;
-        }
-    }
+	{
+		if (shootCooldown > 0) {
+			shootCooldown -= Time.deltaTime;
+		}
+	}
 
 	public void Attack(bool isEnemy)
 	{
@@ -47,16 +34,6 @@ public class WeaponManager : MonoBehaviour
 			var shotTransform = Instantiate(shotPrefab) as Transform;
 			shotTransform.position = transform.position;
 			shotTransform.gameObject.GetComponent<MovementScript> ().direction = directionAttack;
-			ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
-			if (shot != null)
-			{
-				shot.isEnemyShot = isEnemy;
-				if (!shot.isEnemyShot) {
-					
-					Vector3 bullPosition = GameObject.Find("WeaponCanon").transform.position;
-					shotTransform.position = bullPosition;
-				}
-			}
 		}
 	}	
 
@@ -72,6 +49,17 @@ public class WeaponManager : MonoBehaviour
 		}
 	}	
 
+	public void launchGrenade(Vector2 direction){
+		if (CanAttack)
+		{
+			shootCooldown = shootingRate;
+			var shotTransform = Instantiate(shotPrefab) as Transform;
+			shotTransform.position = this.transform.position;
+			//shotTransform.gameObject.GetComponent<MovementScript> ().direction = directionAttack;
+			shotTransform.GetComponent<Rigidbody2D>().velocity = direction;
+		}
+	}
+
 	public bool CanAttack
 	{
 		get
@@ -79,23 +67,4 @@ public class WeaponManager : MonoBehaviour
 			return shootCooldown <= 0f;
 		}
 	}
-
-    public void GrenadeLaunch(bool isEnemy) {
-        if (CanLauchGrenade)
-        {
-            grenadeCooldown = grenadeRate;
-            var grenadeTransform = Instantiate(grenadePrefab) as Transform;
-            grenadeTransform.position = transform.position;
-            grenadeTransform.gameObject.GetComponent<GrenadeMovementScript>().direction = directionGrenade;
-            GrenadeScript shot = grenadeTransform.gameObject.GetComponent<GrenadeScript>();
-        }
-    }
-
-    public bool CanLauchGrenade //demander à Hugo si c'est une structure Unity ou c# en générale
-    {
-        get
-        {
-            return grenadeCooldown <= 0f;
-        }
-    }
 }

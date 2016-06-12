@@ -47,10 +47,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AttackerManager.cs" />
      <Compile Include="Assets\Scripts\BasicEnemy.cs" />
+     <Compile Include="Assets\Scripts\BubleParticle.cs" />
      <Compile Include="Assets\Scripts\CameraManager.cs" />
      <Compile Include="Assets\Scripts\DefenderManager.cs" />
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
-     <Compile Include="Assets\Scripts\GrenadeMovementScript.cs" />
      <Compile Include="Assets\Scripts\GrenadeScript.cs" />
      <Compile Include="Assets\Scripts\MovementScript.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />

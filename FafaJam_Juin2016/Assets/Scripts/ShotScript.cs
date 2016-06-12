@@ -7,14 +7,14 @@ public class ShotScript : MonoBehaviour {
 
 	public bool isEnemyShot = false;
 
-	private bool isTouching = false;
+	protected bool isTouching = false;
 
 	private Vector2 savedVelocity;
 
 	public int speedX = 0;
 	public int speedY = 0;
 
-	void Start()
+	public virtual void Start()
 	{
 		savedVelocity = this.GetComponent<Rigidbody2D> ().velocity;
 		Destroy (this.gameObject, 2f);
@@ -26,7 +26,7 @@ public class ShotScript : MonoBehaviour {
 		Destroy (this.gameObject);
 	}
 
-	void OnTriggerEnter2D(Collider2D col){
+	public virtual void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag == "Bouclier") {
 			Destroy (this.gameObject);
 		}

@@ -14,7 +14,7 @@ public class EnemyScript : MonoBehaviour {
 		//manager = GameObject.Find ("GameManager").GetComponent<GameManager>();
 	}
 
-	public void OnTriggerEnter2D(Collider2D coll)
+	public virtual void OnTriggerEnter2D(Collider2D coll)
 	{
 		if (coll.gameObject.tag == "TIRPlayer") {
 			this.pv -= 1;

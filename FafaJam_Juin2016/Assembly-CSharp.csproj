@@ -47,7 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AttackerManager.cs" />
      <Compile Include="Assets\Scripts\BasicEnemy.cs" />
-     <Compile Include="Assets\Scripts\BubleLauncher.cs" />
+     <Compile Include="Assets\Scripts\Blobfish.cs" />
      <Compile Include="Assets\Scripts\BubleParticle.cs" />
      <Compile Include="Assets\Scripts\CameraManager.cs" />
      <Compile Include="Assets\Scripts\DefenderManager.cs" />

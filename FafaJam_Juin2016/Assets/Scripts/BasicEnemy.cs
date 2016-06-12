@@ -26,6 +26,7 @@ public class BasicEnemy : EnemyScript {
 		movement = this.GetComponent<MovementScript> ();
 		rangeToPlayer = Random.Range (4f, 7f);
 		timeBetweenBuble = Random.Range (2f, 4f);
+		this.GetComponent<BoxCollider2D> ().size = new Vector2(1.5f, Random.Range (3f, 3.6f));
 	}
 
 	void Update () {
@@ -45,12 +46,12 @@ public class BasicEnemy : EnemyScript {
 			if ((target.transform.position.x -this.transform.position.x) < rangeToPlayer) {
 				movement.isStopped = false;
 				movement.setDirection (-1, 0);
-				this.transform.localScale = new Vector2 (-1, 1);
+				this.transform.localScale = new Vector2 (-0.7f, 0.7f);
 				anim.SetBool ("isFront", false);
 			} else if ((target.transform.position.x - this.transform.position.x )> rangeToPlayer+1) {
 				movement.isStopped = false;
 				movement.setDirection (1, 0);
-				this.transform.localScale = new Vector2 (-1, 1);
+				this.transform.localScale = new Vector2 (-0.7f, 0.7f);
 				anim.SetBool ("isFront", true);
 			}else
 				movement.isStopped = true;

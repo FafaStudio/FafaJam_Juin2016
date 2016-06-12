@@ -10,12 +10,15 @@ public class DefenderManager : MonoBehaviour {
 	public GameObject bubbleEffect;
 	private float timeBetweenBuble;
 
+	private Animator canonAnim;
+
     void Start()
     {
         weaponManager = gameObject.GetComponent<WeaponManager>();
         playerManager = this.transform.parent.gameObject.GetComponent<PlayerManager>();
 
 		timeBetweenBuble = Random.Range (2f, 4f);
+		canonAnim = GameObject.Find ("canon").GetComponent<Animator> ();
     }
 
     void Update()
@@ -37,7 +40,9 @@ public class DefenderManager : MonoBehaviour {
             {
 				direction = new Vector2 (-20f, 10f);
             }
-				
+			if (weaponManager.CanAttack) {
+				canonAnim.SetTrigger ("Firing");
+			}
 			weaponManager.launchGrenade (direction);
         }
     }

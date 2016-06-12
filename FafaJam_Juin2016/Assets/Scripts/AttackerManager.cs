@@ -56,10 +56,20 @@ public class AttackerManager : MonoBehaviour {
                         shotPositionY = -4;
                     }
                     finalPosition = new Vector3(0, shotPositionY, playerPosition.z);
+                    
                 }
                 else
                 {
-                    finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
+                    float distanceX = mousePosition.x - playerPosition.x;
+                    if (distanceX <= 3)
+                    {
+                        float multiplicateur = 3/Mathf.Abs(distanceX);
+                        finalPosition = new Vector3(distanceX* multiplicateur, (mousePosition.y - playerPosition.y) * multiplicateur, playerPosition.z);
+                    }
+                    else
+                    {
+                        finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
+                    }
                 }
             }
             else
@@ -79,7 +89,16 @@ public class AttackerManager : MonoBehaviour {
                 }
                 else
                 {
-                    finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
+                    float distanceX = mousePosition.x - playerPosition.x;
+                    if (distanceX <= 3)
+                    {
+                        float multiplicateur = 3 / Mathf.Abs(distanceX);
+                        finalPosition = new Vector3(distanceX * multiplicateur, (mousePosition.y - playerPosition.y) * multiplicateur, playerPosition.z);
+                    }
+                    else
+                    {
+                        finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
+                    }
                 }
             }
 			

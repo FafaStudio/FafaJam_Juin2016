@@ -23,10 +23,6 @@ public class AttackerManager : MonoBehaviour {
             Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             Vector3 playerPosition = gameObject.transform.position;
             Vector3 finalPosition;
-            print("---------------");
-            print(mousePosition);
-            print(playerPosition);
-            print(new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z));
             if (playerManager.getSwapPosition())//tireur a gauche
             {
                 if(mousePosition.x - playerPosition.x >= 0)//si dans le dos

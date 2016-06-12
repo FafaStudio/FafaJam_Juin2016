@@ -10,20 +10,34 @@ public class WeaponManager : MonoBehaviour
 
 	private float shootCooldown;
 
-	public Vector2 directionAttack;
+    public Vector2 directionAttack;
+
+    public Transform grenadePrefab;
+
+    public float grenadeRate = 3f;
+
+    private float grenadeCooldown;
+
+    public Vector2 directionGrenade;
+
 
 	void Start()
 	{
 		shootCooldown = 0f;
+        grenadeCooldown = 0f;
 	}
 
 	void Update()
-	{
-		if (shootCooldown > 0)
-		{
-			shootCooldown -= Time.deltaTime;
-		}
-	}
+    {
+        if (shootCooldown > 0)
+        {
+            shootCooldown -= Time.deltaTime;
+        }
+        if (grenadeCooldown > 0)
+        {
+            grenadeCooldown -= Time.deltaTime;
+        }
+    }
 
 	public void Attack(bool isEnemy)
 	{
@@ -43,8 +57,8 @@ public class WeaponManager : MonoBehaviour
 				}
 			}*/
 		}
-	}
-		
+	}		
+
 	public bool CanAttack
 	{
 		get
@@ -52,4 +66,23 @@ public class WeaponManager : MonoBehaviour
 			return shootCooldown <= 0f;
 		}
 	}
+
+    public void GrenadeLaunch(bool isEnemy) {
+        if (CanLauchGrenade)
+        {
+            grenadeCooldown = grenadeRate;
+            var grenadeTransform = Instantiate(grenadePrefab) as Transform;
+            grenadeTransform.position = transform.position;
+            grenadeTransform.gameObject.GetComponent<GrenadeMovementScript>().direction = directionGrenade;
+            GrenadeScript shot = grenadeTransform.gameObject.GetComponent<GrenadeScript>();
+        }
+    }
+
+    public bool CanLauchGrenade //demander à Hugo si c'est une structure Unity ou c# en générale
+    {
+        get
+        {
+            return grenadeCooldown <= 0f;
+        }
+    }
 }

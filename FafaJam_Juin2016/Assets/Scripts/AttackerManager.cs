@@ -35,71 +35,54 @@ public class AttackerManager : MonoBehaviour {
 		animManager.SetBool (variable, value);
 	}
 
+
+
+    private bool needRecadrageShoot(bool swapPosition, Vector3 supposedPosition)
+    {//si on est à l'opposé de notre rayon de tir ou trop bas
+        return ((swapPosition && supposedPosition.x > 0) || (!swapPosition && supposedPosition.x < 0) || ((supposedPosition.x == 0 && supposedPosition.y < -1) || supposedPosition.y / Mathf.Abs(supposedPosition.x)<-0.5f));
+    }
+
+
+    private Vector3 recadrageShoot(bool swapPosition, Vector3 supposedPosition)
+    {
+        Vector3 recadredShoot;
+        if(supposedPosition.y < 0)
+        {
+            if (swapPosition)
+            {
+                recadredShoot = new Vector3(-6f, -3f, 0);
+            }
+            else
+            {
+                recadredShoot = new Vector3(6f, -3f, 0);
+            }
+        }
+        else
+        {
+            recadredShoot = new Vector3(0, 4f, 0);
+        }
+        return recadredShoot;
+    }
+
+    private Vector3 miseAuPointShoot(bool swapPosition, Vector3 supposedPosition)
+    {
+        return supposedPosition * 3 / Mathf.Abs(supposedPosition.x);
+    }
+
     public void shoot()
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             Vector3 playerPosition = gameObject.transform.position;
+            Vector3 calculatedPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
             Vector3 finalPosition;
-            if (playerManager.getSwapPosition())//tireur a gauche
-            {
-                if(mousePosition.x - playerPosition.x >= 0)//si dans le dos
-                {
-                    float shotPositionY;
-                    if(mousePosition.y - playerPosition.y >= 0)
-                    {
-                        shotPositionY = 4;
-                    }
-                    else
-                    {
-                        shotPositionY = -4;
-                    }
-                    finalPosition = new Vector3(0, shotPositionY, playerPosition.z);
-                    
-                }
-                else
-                {
-                    float distanceX = mousePosition.x - playerPosition.x;
-                    if (distanceX <= 3)
-                    {
-                        float multiplicateur = 3/Mathf.Abs(distanceX);
-                        finalPosition = new Vector3(distanceX* multiplicateur, (mousePosition.y - playerPosition.y) * multiplicateur, playerPosition.z);
-                    }
-                    else
-                    {
-                        finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
-                    }
-                }
+            if(needRecadrageShoot(playerManager.getSwapPosition(), calculatedPosition)){
+                finalPosition = recadrageShoot(playerManager.getSwapPosition(), calculatedPosition);
             }
             else
             {
-                if (mousePosition.x - playerPosition.x <= 0)//si dans le dos
-                {
-                    float shotPositionY;
-                    if (mousePosition.y - playerPosition.y >= 0)
-                    {
-                        shotPositionY = 4;
-                    }
-                    else
-                    {
-                        shotPositionY = -4;
-                    }
-                    finalPosition = new Vector3(0, shotPositionY, playerPosition.z);
-                }
-                else
-                {
-                    float distanceX = mousePosition.x - playerPosition.x;
-                    if (distanceX <= 3)
-                    {
-                        float multiplicateur = 3 / Mathf.Abs(distanceX);
-                        finalPosition = new Vector3(distanceX * multiplicateur, (mousePosition.y - playerPosition.y) * multiplicateur, playerPosition.z);
-                    }
-                    else
-                    {
-                        finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
-                    }
-                }
+                finalPosition = miseAuPointShoot(playerManager.getSwapPosition(), calculatedPosition);
             }
 
 			arms [0].GetComponent<Animator> ().SetTrigger ("Firing");
@@ -110,57 +93,32 @@ public class AttackerManager : MonoBehaviour {
         }
     }
 
-	public void updateArms()
+    public void updateArms()
 	{
 
-			Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
-			Vector3 playerPosition = gameObject.transform.position;
-			Vector3 finalPosition;
-			if (playerManager.getSwapPosition())//tireur a gauche
-			{
-				if(mousePosition.x - playerPosition.x >= 0)//si dans le dos
-				{
-					float shotPositionY;
-					if(mousePosition.y - playerPosition.y >= 0)
-					{
-						shotPositionY = 4;
-					}
-					else
-					{
-						shotPositionY = -4;
-					}
-					finalPosition = new Vector3(0, shotPositionY, playerPosition.z);
-				}
-				else
-				{
-					finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
-				}
-				arms[0].rotation = Quaternion.Euler (0f, 0f, 180-(Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
+            Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
+            Vector3 playerPosition = gameObject.transform.position;
+            Vector3 calculatedPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
+            Vector3 finalPosition;
+            if (needRecadrageShoot(playerManager.getSwapPosition(), calculatedPosition))
+            {
+                finalPosition = recadrageShoot(playerManager.getSwapPosition(), calculatedPosition);
+            }
+            else
+            {
+                finalPosition = miseAuPointShoot(playerManager.getSwapPosition(), calculatedPosition);
+            }
+        if (playerManager.getSwapPosition())
+        {
+            arms[0].rotation = Quaternion.Euler (0f, 0f, 180-(Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
 			arms[1].rotation = Quaternion.Euler (0f, 0f, 30+(-2f*(Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg)));
+        }
+        else
+        {
+            arms[0].rotation = Quaternion.Euler(0f, 0f, (Mathf.Atan2((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
+            arms[1].rotation = Quaternion.Euler(0f, 0f, 2.5f * (Mathf.Atan2((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
+        }
 
-			}
-			else
-			{
-				if (mousePosition.x - playerPosition.x <= 0)//si dans le dos
-				{
-					float shotPositionY;
-					if (mousePosition.y - playerPosition.y >= 0)
-					{
-						shotPositionY = 4;
-					}
-					else
-					{
-						shotPositionY = -4;
-					}
-					finalPosition = new Vector3(0, shotPositionY, playerPosition.z);
-				}
-				else
-				{
-					finalPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
-				}
-			arms[0].rotation = Quaternion.Euler (0f, 0f, (Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
-			arms[1].rotation = Quaternion.Euler (0f, 0f, 2.5f*(Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
-			}
 		weaponManager.rotationShoot =  Quaternion.Euler (0f, 0f, (Mathf.Atan2 ((finalPosition.y), (finalPosition.x)) * Mathf.Rad2Deg));
 	}
 

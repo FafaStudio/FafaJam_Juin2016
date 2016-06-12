@@ -133,8 +133,6 @@ public class PlayerManager : MonoBehaviour {
 			defender.transform.localScale = new Vector2(1, 1);
 			ombres[1].posY = -4.4f;
 
-			print (defender.GetComponentInChildren<Ombre> ().posY.ToString ());
-
 			attacker.GetComponent<AttackerManager> ().arms [0].GetComponent<Animator> ().SetBool ("isRight", true);
 			attacker.GetComponent<AttackerManager> ().setAnimation ("isFront", true);
             swapped = false;

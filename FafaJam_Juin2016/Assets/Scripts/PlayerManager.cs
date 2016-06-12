@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public Vector2 speed = new Vector2(20f, 20f); 
 	private float movementX = 10f;
-	private float movementY = 10f;
+	public float movementY = 10f;
     private bool isJumping = true;
     private float jumpDuration = 0.1f;
     private float jumpStart = 0f;
@@ -22,17 +22,14 @@ public class PlayerManager : MonoBehaviour {
     public GameObject attacker;
     public GameObject defender;
 
-    private Animator animManager;
-
 	//private WeaponManager[] weapon;
 
-	public Vector2 movement;
 
 	private bool isDead = false;
 
 	Rigidbody2D body;
 
-	private CameraManager camera;
+	public CameraManager camera;
 
 
 	public AudioClip musicPerso;
@@ -44,7 +41,6 @@ public class PlayerManager : MonoBehaviour {
 		//camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
 	}
 	void Start () {
-		animManager = this.GetComponent<Animator> ();
 		body = GetComponent<Rigidbody2D> ();
 		curPv = maxPv;
 	}
@@ -67,9 +63,15 @@ public class PlayerManager : MonoBehaviour {
 	private void calculMovement(){
 		if (Input.GetKey (KeyCode.D)) {//mouvements latéraux
 			speed.x = movementX;
+			attacker.GetComponent<AttackerManager>().setAnimation ("RightButton", true);
+			attacker.GetComponent<AttackerManager>().setAnimation ("LeftButton", false);
 		} else if (Input.GetKey (KeyCode.Q)) {
 			speed.x = -movementX;
+			attacker.GetComponent<AttackerManager>().setAnimation ("RightButton", false);
+			attacker.GetComponent<AttackerManager>().setAnimation ("LeftButton", true);
 		} else {
+			attacker.GetComponent<AttackerManager>().setAnimation ("RightButton", false);
+			attacker.GetComponent<AttackerManager>().setAnimation ("LeftButton", false);
 			speed.x = 0;
 		}
 
@@ -78,6 +80,7 @@ public class PlayerManager : MonoBehaviour {
             speed.y = movementY;
             isJumping = true;
             jumpStart = Time.time;
+			attacker.GetComponent<AttackerManager>().setAnimation ("isJumping", true);
         }
         else if (jumpStart > 1f && Time.time - jumpStart < jumpDuration && isJumping)
         {
@@ -116,6 +119,11 @@ public class PlayerManager : MonoBehaviour {
             Vector3 attackerActualPosition = attacker.transform.position;
             attacker.transform.position = defender.transform.position;
             defender.transform.position = attackerActualPosition;
+			attacker.transform.localScale = new Vector2 (1, 1);
+			defender.transform.localScale = new Vector2(-1, 1);
+
+			attacker.GetComponent<AttackerManager> ().arms [0].GetComponent<Animator> ().SetBool ("isRight", true);
+			attacker.GetComponent<AttackerManager> ().setAnimation ("isFront", true);
             swapped = false;
         }
         else
@@ -123,6 +131,11 @@ public class PlayerManager : MonoBehaviour {
             Vector3 attackerActualPosition = attacker.transform.position;
             attacker.transform.position = defender.transform.position;
             defender.transform.position = attackerActualPosition;
+			attacker.transform.localScale = new Vector2 (-1, 1);
+			defender.transform.localScale = new Vector2(1, 1);
+
+			attacker.GetComponent<AttackerManager> ().arms [0].GetComponent<Animator> ().SetBool ("isRight", false);
+			attacker.GetComponent<AttackerManager> ().setAnimation ("isFront", false);
             swapped = true;
         }
     }
@@ -158,6 +171,7 @@ public class PlayerManager : MonoBehaviour {
     {
         if (col.gameObject.tag == "Sol" ){
             isJumping = false;
+			attacker.GetComponent<AttackerManager>().setAnimation ("isJumping", false);
         }
     }
 

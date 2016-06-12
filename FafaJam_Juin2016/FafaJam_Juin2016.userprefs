@@ -2,15 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AttackerManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/SpawnerManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BasicEnemy.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WeaponManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/EnemyScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MovementScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ShotScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SpawnerChief.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerManager.cs" Line="111" Column="6" />
-      <File FileName="Assets/Scripts/AttackerManager.cs" Line="108" Column="43" />
+      <File FileName="Assets/Scripts/PlayerManager.cs" Line="32" Column="8" />
+      <File FileName="Assets/Scripts/CameraManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AttackerManager.cs" Line="86" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

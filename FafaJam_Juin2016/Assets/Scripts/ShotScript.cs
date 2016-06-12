@@ -27,8 +27,9 @@ public class ShotScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		if (col.gameObject.tag == "EndBullet")
+		if (col.gameObject.tag == "Bouclier") {
 			Destroy (this.gameObject);
+		}
 	}
 
 	void OnPauseGame(){

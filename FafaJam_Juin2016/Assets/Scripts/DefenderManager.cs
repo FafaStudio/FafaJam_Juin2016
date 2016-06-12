@@ -5,6 +5,7 @@ public class DefenderManager : MonoBehaviour {
     // Use this for initialization
     private WeaponManager weaponManager;
     private PlayerManager playerManager;
+
     void Start()
     {
         weaponManager = gameObject.GetComponent<WeaponManager>();

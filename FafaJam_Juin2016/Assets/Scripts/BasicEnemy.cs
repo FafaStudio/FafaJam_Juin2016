@@ -14,28 +14,31 @@ public class BasicEnemy : EnemyScript {
 
 	private bool isSpawnedRight;
 
+	private float rangeToPlayer;
+
 	void Start () {
 		anim = this.GetComponent<Animator> ();
 		weapon = this.GetComponent<WeaponManager> ();
 		maxRate = weapon.shootingRate;
 		movement = this.GetComponent<MovementScript> ();
+		rangeToPlayer = Random.Range (5f, 9f);
 	}
 
 	void Update () {
 		if (isSpawnedRight) {
-			if ((this.transform.position.x - target.transform.position.x) < 6) {
+			if ((this.transform.position.x - target.transform.position.x) < rangeToPlayer) {
 				movement.isStopped = false;
 				movement.setDirection (1, 0);
-			} else if ((this.transform.position.x - target.transform.position.x) > 7) {
+			} else if ((this.transform.position.x - target.transform.position.x) > rangeToPlayer+1) {
 				movement.isStopped = false;
 				movement.setDirection (-1, 0);
 			} else
 				movement.isStopped = true;
 		} else {
-			if ((target.transform.position.x -this.transform.position.x) < 6) {
+			if ((target.transform.position.x -this.transform.position.x) < rangeToPlayer) {
 				movement.isStopped = false;
 				movement.setDirection (-1, 0);
-			} else if ((target.transform.position.x - this.transform.position.x )> 7) {
+			} else if ((target.transform.position.x - this.transform.position.x )> rangeToPlayer+1) {
 				movement.isStopped = false;
 				movement.setDirection (1, 0);
 			}else

@@ -48,16 +48,29 @@ public class WeaponManager : MonoBehaviour
 			shotTransform.position = transform.position;
 			shotTransform.gameObject.GetComponent<MovementScript> ().direction = directionAttack;
 			ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
-			/*if (shot != null)
+			if (shot != null)
 			{
 				shot.isEnemyShot = isEnemy;
 				if (!shot.isEnemyShot) {
-					Vector3 bullPosition = new Vector3 (transform.position.x + 10f, transform.position.y+3f, 0f);
+					
+					Vector3 bullPosition = GameObject.Find("WeaponCanon").transform.position;
 					shotTransform.position = bullPosition;
 				}
-			}*/
+			}
 		}
-	}		
+	}	
+
+	public void AttackWithSpecialPosition(Vector3 bullPosition)
+	{
+		if (CanAttack)
+		{
+			shootCooldown = shootingRate;
+			var shotTransform = Instantiate(shotPrefab) as Transform;
+			shotTransform.position = bullPosition;
+			shotTransform.gameObject.GetComponent<MovementScript> ().direction = directionAttack;
+			ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
+		}
+	}	
 
 	public bool CanAttack
 	{

@@ -16,6 +16,7 @@ public class Baleine : EnemyScript {
 	public Transform rocket;
 
 	void Start () {
+        enemyName = "Baleine";
 		animManager = this.GetComponent<Animator> ();
 	}
 	
@@ -41,10 +42,10 @@ public class Baleine : EnemyScript {
 			Destroy (coll.gameObject);
 			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
 			if (this.pv <= 0) {
-				//manager.updateScore (scoreValue);
-				Destroy (this.gameObject);
-			}
-		}
+                //manager.updateScore (scoreValue);
+                getKilled();
+            }
+        }
 	}
 
 	public IEnumerator launchBlobyFish(){

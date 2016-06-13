@@ -31,11 +31,22 @@ public class GrenadeScript : ShotScript {
         if (col.gameObject.tag == "Sol" || col.gameObject.tag == "Enemy")
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
+            bool aTouche = false;
             for (int i = 0; i < colliders.Length; i++)
             {
                 if(colliders[i].tag == "Enemy")
                 {
+<<<<<<< HEAD
 					StartCoroutine(colliders [i].GetComponent<EnemyScript> ().startDeath ());
+=======
+                    if (!aTouche)
+                    {
+                        aTouche = true;
+                        GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Grenades Réussies");
+                    }
+                    GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Grenades Touchées");
+                    colliders[i].gameObject.GetComponent<EnemyScript>().getKilled();
+>>>>>>> b61acf28f50c06853a68f726715ba0107915cf0c
                 }
             }
 			StartCoroutine (startExplosion ());

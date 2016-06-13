@@ -152,6 +152,14 @@ public class AttackerManager : MonoBehaviour {
 		}
 	}
 
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Sol")
+        {
+            playerManager.attackerCollideSol();
+        }
+    }
+
 	void OnPauseGame(){
 		this.enabled = false;
 	}

@@ -5,11 +5,15 @@ public class PlayerManager : MonoBehaviour {
 
 	//VARIABLES______________________________________________________________________________________________________________
 
+
+    private bool defenderIsJumping = true;
+    private int compteurDefenderJumpFrame = 0;
+
 	public Vector2 speed = new Vector2(20f, 20f); 
 	private float movementX = 10f;
-	public float movementY = 10f;
+	public float movementY = 20f;
     private bool isJumping = true;
-    private float jumpDuration = 0.1f;
+    private float jumpDuration = 0.2f;
     private float jumpStart = 0f;
 
 	public int maxPv;
@@ -92,7 +96,8 @@ public class PlayerManager : MonoBehaviour {
         }
         else if (jumpStart > 1f && Time.time - jumpStart < jumpDuration && isJumping)
         {
-            speed.y = movementY;
+            //speed.y = movementY;
+
         }
         else
         {
@@ -102,10 +107,59 @@ public class PlayerManager : MonoBehaviour {
 
 
     private void doMovement(){
-		body.velocity = speed;
-	}
+        if (isJumping)
+        {
+            doMovementAttacker(speed);
+            if (speed.y != 0)
+            {
+                compteurDefenderJumpFrame++;
+            }
+            if(!defenderIsJumping && Time.time - jumpStart > 0.4f)
+            {
+                doMovementDefender(new Vector2(speed.x, movementY));
+                compteurDefenderJumpFrame--;
+                if(compteurDefenderJumpFrame == 0)
+                {
+                    defenderIsJumping = true;
+                }
+            }
+            else
+            {
+                doMovementDefender(new Vector2(speed.x, 0f));
+            }
+        }
+        else
+        {
+            doMovementAttacker(speed);
+            doMovementDefender(speed);
+        }
+        
+        if(Mathf.Abs(attacker.transform.position.x - defender.transform.position.x) != 1.52f)//maintient de l'écart entre les personnages en x  
+        {
+            if (swapped)
+            {
+                attacker.transform.position = new Vector3(attacker.transform.position.x + (defender.transform.position.x - attacker.transform.position.x - 1.52f)/2, attacker.transform.position.y, attacker.transform.position.z);
+                defender.transform.position = new Vector3(defender.transform.position.x - (defender.transform.position.x - attacker.transform.position.x - 1.52f)/2, defender.transform.position.y, defender.transform.position.z);
+            }
+            else
+            {
+                attacker.transform.position = new Vector3(attacker.transform.position.x - (attacker.transform.position.x - defender.transform.position.x - 1.52f) / 2, attacker.transform.position.y, attacker.transform.position.z);
+                defender.transform.position = new Vector3(defender.transform.position.x + (attacker.transform.position.x - defender.transform.position.x - 1.52f) / 2, defender.transform.position.y, defender.transform.position.z);
+            }
+        }
+    }
 
-	private void setOmbre(bool value){
+    private void doMovementAttacker(Vector2 temp)
+    {
+        attacker.GetComponent<Rigidbody2D>().velocity = temp;
+    }
+    private void doMovementDefender(Vector2 temp)
+    {
+        defender.GetComponent<Rigidbody2D>().velocity = temp;
+    }
+
+
+    private void setOmbre(bool value){
 		for (int i = 0; i < ombres.Length; i++) {
 			ombres [i].gameObject.SetActive (value);
 		}
@@ -204,6 +258,16 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+
+    public void attackerCollideSol()
+    {
+        isJumping = false;
+        defenderIsJumping = false;
+        attacker.GetComponent<AttackerManager>().setAnimation("isJumping", false);
+        attacker.GetComponent<AttackerManager>().arms[0].GetComponent<Animator>().SetBool("isJumping", false);
+        attacker.GetComponent<AttackerManager>().arms[1].GetComponent<Animator>().SetBool("isJumping", false);
+        setOmbre(true);
+    }
 
 	public void shoot(){
 		/*if (Input.GetKey (KeyCode.Space)) {

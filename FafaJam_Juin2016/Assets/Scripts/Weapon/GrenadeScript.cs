@@ -5,6 +5,8 @@ public class GrenadeScript : ShotScript {
 
     public float flyingTime;
 
+	public Transform fumeParticle;
+
 	public override void Start()
 	{
 		base.Start();
@@ -33,12 +35,20 @@ public class GrenadeScript : ShotScript {
             {
                 if(colliders[i].tag == "Enemy")
                 {
-                    Destroy(colliders[i].gameObject);
+					StartCoroutine(colliders [i].GetComponent<EnemyScript> ().startDeath ());
                 }
             }
-            Destroy(gameObject);
+			StartCoroutine (startExplosion ());
         }
     }
+
+	public IEnumerator startExplosion(){
+		var puTransform = Instantiate (fumeParticle) as Transform;
+		puTransform.position = this.transform.position;
+		yield return new WaitForSeconds (0.1f);
+		Destroy (this.gameObject);
+	}
+
     /*private void OnDrawGizmos()//VOIR LA RANGE DU CERCLE
     {
         Gizmos.color = Color.red;

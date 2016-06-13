@@ -10,6 +10,9 @@ public class CameraEffectDezoom : MonoBehaviour {
 	public float heroPosition;
 	public GameObject spawnerMobs;//reposition (0,0)
 
+	public GameObject[] walls;
+	public float positionWalls;
+
 	public bool isLaunch = false;
 	public bool isDezoomed = false;
 
@@ -17,6 +20,7 @@ public class CameraEffectDezoom : MonoBehaviour {
 	void Start () {
 		sizeScreen = mainCamera.orthographicSize;
 		heroPosition = hero.transform.position.y;
+		positionWalls = walls [0].transform.position.x;
 	}
 
 	void Update () {
@@ -50,6 +54,8 @@ public class CameraEffectDezoom : MonoBehaviour {
 			isDezoomed = true;
 		}
 		setOmbres(-1.2f);
+		walls [0].transform.position = new Vector2 (-13f, -2f);
+		walls [1].transform.position = new Vector2 (13f, -2f);
 	}
 
 	public void Zoom(){
@@ -74,6 +80,8 @@ public class CameraEffectDezoom : MonoBehaviour {
 			isDezoomed = false;
 		}
 		setOmbres(1.5f);
+		walls [0].transform.position = new Vector2 (positionWalls, 0f);
+		walls [1].transform.position = new Vector2 (-positionWalls, 0f);
 	}
 
 	public void setOmbres(float value){

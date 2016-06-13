@@ -114,7 +114,7 @@ public class PlayerManager : MonoBehaviour {
             {
                 compteurDefenderJumpFrame++;
             }
-            if(!defenderIsJumping && Time.time - jumpStart > 0.4f)
+            if(!defenderIsJumping && Time.time - jumpStart > 0.1f)
             {
                 doMovementDefender(new Vector2(speed.x, movementY));
                 compteurDefenderJumpFrame--;

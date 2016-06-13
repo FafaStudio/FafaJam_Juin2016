@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AttackerManager.cs" />
-     <Compile Include="Assets\Scripts\BaleineSpawner.cs" />
      <Compile Include="Assets\Scripts\DefenderManager.cs" />
      <Compile Include="Assets\Scripts\Effects\BubleParticle.cs" />
      <Compile Include="Assets\Scripts\Effects\CameraEffectDezoom.cs" />
@@ -66,9 +65,12 @@
      <Compile Include="Assets\Scripts\Mobs\Raie.cs" />
      <Compile Include="Assets\Scripts\MovementScript.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
-     <Compile Include="Assets\Scripts\SpawnerChief.cs" />
-     <Compile Include="Assets\Scripts\SpawnerManager.cs" />
+     <Compile Include="Assets\Scripts\Spawners\BaleineSpawner.cs" />
+     <Compile Include="Assets\Scripts\Spawners\RaieSpawner.cs" />
+     <Compile Include="Assets\Scripts\Spawners\SpawnerChief.cs" />
+     <Compile Include="Assets\Scripts\Spawners\SpawnerManager.cs" />
      <Compile Include="Assets\Scripts\UI\LifeDisplay.cs" />
+     <Compile Include="Assets\Scripts\Weapon\BaleineMissile.cs" />
      <Compile Include="Assets\Scripts\Weapon\GrenadeScript.cs" />
      <Compile Include="Assets\Scripts\Weapon\OursinScript.cs" />
      <Compile Include="Assets\Scripts\Weapon\ShotScript.cs" />

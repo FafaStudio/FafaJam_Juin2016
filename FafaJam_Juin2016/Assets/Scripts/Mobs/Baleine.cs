@@ -13,6 +13,8 @@ public class Baleine : EnemyScript {
 
 	public bool isStopped = false;
 
+	public Transform rocket;
+
 	void Start () {
 		animManager = this.GetComponent<Animator> ();
 	}
@@ -23,7 +25,7 @@ public class Baleine : EnemyScript {
 			return;
 		if (cptBaleine <= 0) {
 			//launchBloby ();
-			StartCoroutine(launchBlobyFish());
+			StartCoroutine(launchRocket());
 		}else
 			cptBaleine -= Time.deltaTime;
 	}
@@ -54,6 +56,58 @@ public class Baleine : EnemyScript {
 		this.GetComponentInChildren<BaleineSpawner> ().setSequence (15, 0.2f);
 		yield return new WaitForSeconds (5.5f);
 		animManager.SetBool ("isBlobing", false);
+	}
+
+	public IEnumerator launchRocket(){
+		isStopped = true;
+		animManager.SetTrigger ("isFiring");
+		yield return new WaitForSeconds (0.5f);
+		animManager.SetTrigger ("isFiring");
+		yield return new WaitForSeconds (0.5f);
+		animManager.SetTrigger ("isFiring");
+		yield return new WaitForSeconds (0.5f);
+		animManager.SetTrigger ("isFiring");
+		yield return new WaitForSeconds (0.5f);
+		launchRocketSerie ();
+	}
+
+	public void launchRocketSerie(){
+		int cpt = 2;
+		int randomStart = Random.Range (0, 99);
+		bool isTroue = false;
+		float firstTroue = -1f;
+		bool troueDone = false;
+		if (randomStart > 49) {
+			for (int i = 0; i < 6; i++) {
+				firstTroue = Random.Range (0f, 1f);
+				if (!isTroue) {
+					if ((firstTroue > 0.5f)&&(!troueDone)) {
+						isTroue = true;
+					} else {
+						var puTransform = Instantiate (rocket) as Transform;
+						puTransform.transform.position = new Vector2 (target.transform.position.x - (cpt * i), (10f + i ));
+					}
+				}else{
+					troueDone = true;
+					isTroue = false;
+				}
+			}
+		} else {
+			for (int i = 0; i < 6; i++) {
+				firstTroue = Random.Range (0f, 1f);
+				if (!isTroue) {
+					if ((firstTroue > 0.5f)&&(!troueDone)) {
+						isTroue = true;
+					} else {
+						var puTransform = Instantiate (rocket) as Transform;
+						puTransform.transform.position = new Vector2 (-10f + (cpt * i), (10f + i ));
+					}
+				}else{
+					troueDone = true;
+					isTroue = false;
+				}
+			}
+		}
 	}
 
 

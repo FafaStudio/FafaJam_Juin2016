@@ -103,7 +103,7 @@ public class BasicEnemy : EnemyScript {
 			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
 			if (this.pv <= 0) {
 				//manager.updateScore (scoreValue);
-				Destroy (this.gameObject);
+				StartCoroutine(startDeath());
 			}
 		}
 	}
@@ -119,15 +119,7 @@ public class BasicEnemy : EnemyScript {
 			timeBetweenBuble = Random.Range (2f, 4f);
 		}
 	}
-
-
-
-	public IEnumerator launchDeath(){
-	//	anim.SetBool ("isDead", true);
-		//this.transform.localScale = new Vector3 (0.4f, 0.4f);
-		yield return new WaitForSeconds (0.2f);
-		Destroy (this.gameObject);
-	}
+		
 
 	void OnPauseGame(){
 		this.enabled = false;

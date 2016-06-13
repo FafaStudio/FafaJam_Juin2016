@@ -5,7 +5,7 @@ public class CameraManager : MonoBehaviour {
 
 	private float decreaseFactor = 1.0f;
 	private float shake = 0f;
-	private float shakeAmount = 0.1f;
+	public float shakeAmount = 0.1f;
 	private Camera camera;
 
 	void Start(){

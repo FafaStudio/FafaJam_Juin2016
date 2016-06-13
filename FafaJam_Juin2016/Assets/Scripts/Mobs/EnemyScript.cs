@@ -7,6 +7,8 @@ public class EnemyScript : MonoBehaviour {
 	public int scoreValue;
 	protected GameObject target;
 
+	public Transform fumeParticle;
+
 	//protected GameManager manager;
 
 	void Awake(){
@@ -19,12 +21,18 @@ public class EnemyScript : MonoBehaviour {
 		if (coll.gameObject.tag == "TIRPlayer") {
 			this.pv -= 1;
 			Destroy (coll.gameObject);
-			//StartCoroutine (coll.gameObject.GetComponent<ShotScript> ().startEnd ());
 			if (this.pv <= 0) {
 				//manager.updateScore (scoreValue);
-				Destroy (this.gameObject);
+				StartCoroutine(startDeath());
 			}
 		}
+	}
+
+	public IEnumerator startDeath(){
+		var puTransform = Instantiate (fumeParticle) as Transform;
+		puTransform.position = this.transform.position;
+		yield return new WaitForSeconds (0.1f);
+		Destroy (this.gameObject);
 	}
 		
 	void OnPauseGame(){

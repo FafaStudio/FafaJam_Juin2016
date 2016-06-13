@@ -7,8 +7,7 @@ public class OursinScript : MonoBehaviour {
 	void Start () {
 		Destroy (this.gameObject, 2f);
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}

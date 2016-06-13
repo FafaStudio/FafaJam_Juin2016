@@ -8,7 +8,7 @@ public class LifeDisplay : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         text = gameObject.GetComponent<Text>();
-	    playerManager = GameObject.FindWithTag("Player").GetComponent<PlayerManager>();
+	    playerManager = GameObject.FindWithTag("Player").GetComponentInParent<PlayerManager>();
     }
 
     // Update is called once per frame

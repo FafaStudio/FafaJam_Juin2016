@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour {
 	public IEnumerator launchBossSequence(){
 		this.GetComponent<CameraEffectDezoom> ().isLaunch = true;
 		spawners.pauseSpawn = true;
+		GameObject.Find ("MainCamera").GetComponent<CameraManager> ().shakeAmount = 0.1f;
 		GameObject.Find ("MainCamera").GetComponent<CameraManager> ().setShake (3.5f);
 		yield return new WaitForSeconds (1f);
 		var puTransform = Instantiate(baleine) as Transform;

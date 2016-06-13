@@ -23,32 +23,25 @@ public class EnemyScript : MonoBehaviour {
 			this.pv -= 1;
 			Destroy (coll.gameObject);
 			if (this.pv <= 0) {
-<<<<<<< HEAD
 				//manager.updateScore (scoreValue);
-				StartCoroutine(startDeath());
-=======
-                //manager.updateScore (scoreValue);
-                getKilled();
->>>>>>> b61acf28f50c06853a68f726715ba0107915cf0c
+				StartCoroutine (startDeath ());
 			}
 		}
 	}
 
-<<<<<<< HEAD
 	public IEnumerator startDeath(){
 		var puTransform = Instantiate (fumeParticle) as Transform;
 		puTransform.position = this.transform.position;
 		yield return new WaitForSeconds (0.1f);
 		Destroy (this.gameObject);
 	}
-=======
+
     public void getKilled()
     {
 
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
         Destroy(this.gameObject);
     }
->>>>>>> b61acf28f50c06853a68f726715ba0107915cf0c
 		
 	void OnPauseGame(){
 		this.enabled = false;

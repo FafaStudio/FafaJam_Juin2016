@@ -86,18 +86,11 @@ public class Raie : EnemyScript {
 			Destroy (coll.gameObject);
 			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
 			if (this.pv <= 0) {
-<<<<<<< HEAD
 				//manager.updateScore (scoreValue);
 				StartCoroutine(startDeath());
 				Destroy (this.gameObject);
 			}
 		}
-=======
-                //manager.updateScore (scoreValue);
-                getKilled();
-            }
-        }
->>>>>>> b61acf28f50c06853a68f726715ba0107915cf0c
-	}
+    }
 
 }

@@ -103,14 +103,7 @@ public class BasicEnemy : EnemyScript {
 			Destroy (coll.gameObject);
 			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
 			if (this.pv <= 0) {
-                getKilled();
-                /*GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore("BasicEnemy");
-				//manager.updateScore (scoreValue);
-<<<<<<< HEAD
 				StartCoroutine(startDeath());
-=======
-				Destroy (this.gameObject);*/
->>>>>>> b61acf28f50c06853a68f726715ba0107915cf0c
 			}
 		}
 	}

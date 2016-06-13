@@ -65,11 +65,13 @@
      <Compile Include="Assets\Scripts\Mobs\Raie.cs" />
      <Compile Include="Assets\Scripts\MovementScript.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
+     <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\Spawners\BaleineSpawner.cs" />
      <Compile Include="Assets\Scripts\Spawners\RaieSpawner.cs" />
      <Compile Include="Assets\Scripts\Spawners\SpawnerChief.cs" />
      <Compile Include="Assets\Scripts\Spawners\SpawnerManager.cs" />
      <Compile Include="Assets\Scripts\UI\LifeDisplay.cs" />
+     <Compile Include="Assets\Scripts\UI\ScoreDisplay.cs" />
      <Compile Include="Assets\Scripts\Weapon\BaleineMissile.cs" />
      <Compile Include="Assets\Scripts\Weapon\GrenadeScript.cs" />
      <Compile Include="Assets\Scripts\Weapon\OursinScript.cs" />

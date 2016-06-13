@@ -133,6 +133,20 @@ public class PlayerManager : MonoBehaviour {
             doMovementAttacker(speed);
             doMovementDefender(speed);
         }
+        
+        if(Mathf.Abs(attacker.transform.position.x - defender.transform.position.x) != 1.52f)//maintient de l'écart entre les personnages en x  
+        {
+            if (swapped)
+            {
+                attacker.transform.position = new Vector3(attacker.transform.position.x + (defender.transform.position.x - attacker.transform.position.x - 1.52f)/2, attacker.transform.position.y, attacker.transform.position.z);
+                defender.transform.position = new Vector3(defender.transform.position.x - (defender.transform.position.x - attacker.transform.position.x - 1.52f)/2, defender.transform.position.y, defender.transform.position.z);
+            }
+            else
+            {
+                attacker.transform.position = new Vector3(attacker.transform.position.x - (attacker.transform.position.x - defender.transform.position.x - 1.52f) / 2, attacker.transform.position.y, attacker.transform.position.z);
+                defender.transform.position = new Vector3(defender.transform.position.x + (attacker.transform.position.x - defender.transform.position.x - 1.52f) / 2, defender.transform.position.y, defender.transform.position.z);
+            }
+        }
     }
 
     private void doMovementAttacker(Vector2 temp)

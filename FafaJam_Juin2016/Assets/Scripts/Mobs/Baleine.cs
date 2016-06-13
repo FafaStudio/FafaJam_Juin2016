@@ -86,7 +86,7 @@ public class Baleine : EnemyScript {
 						isTroue = true;
 					} else {
 						var puTransform = Instantiate (rocket) as Transform;
-						puTransform.transform.position = new Vector2 (target.transform.position.x - (cpt * i), (10f + i ));
+						puTransform.transform.position = new Vector2 (2f - (cpt * i), (10f + i ));
 					}
 				}else{
 					troueDone = true;

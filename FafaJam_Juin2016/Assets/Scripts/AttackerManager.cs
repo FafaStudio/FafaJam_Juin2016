@@ -87,7 +87,7 @@ public class AttackerManager : MonoBehaviour {
 
 			arms [0].GetComponent<Animator> ().SetTrigger ("Firing");
 			arms [1].GetComponent<Animator> ().SetTrigger ("Firing");
-			playerManager.camera.setShake (0.02f);
+			playerManager.camera.setShake (0.01f);
             weaponManager.directionAttack = finalPosition;
 			weaponManager.AttackWithSpecialPosition (GameObject.Find ("WeaponCanonMorue").transform.position);
 		
@@ -96,7 +96,6 @@ public class AttackerManager : MonoBehaviour {
 
     public void updateArms()
 	{
-
             Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             Vector3 playerPosition = gameObject.transform.position;
             Vector3 calculatedPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
@@ -136,16 +135,29 @@ public class AttackerManager : MonoBehaviour {
 		}
 	}
 
-    /*if (Input.GetKey (KeyCode.Space)) {
-        animManager.SetBool ("Firing", true);
-        if (weapon.Length != 0)
-        {
-            for (int i = 0; i < weapon.Length; i++) {
-                weapon[i].AttackWithCustomPosition (this.levelHero);
-            }
-        }
-    }
-    if(Input.GetKeyUp(KeyCode.Space))
-        animManager.SetBool("Firing", false);*/
+	public void OnTriggerEnter2D(Collider2D coll)
+	{
+		if (coll.gameObject.tag == "enemyBullet") {
+			//playerManager.takeDamage(1);
+			Destroy (coll.gameObject);
+			playerManager.camera.setShake (0.05f);
+			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
+			foreach (HitColorChange hit in GetComponentsInChildren<HitColorChange>()) {
+				StartCoroutine (hit.launchHit());
+			}
+			if (playerManager.getPv() <= 0) {
+				//manager.updateScore (scoreValue);
+				Destroy (this.gameObject);
+			}
+		}
+	}
+
+	void OnPauseGame(){
+		this.enabled = false;
+	}
+
+	void OnResumeGame(){
+		this.enabled = true;
+	}
 
 }

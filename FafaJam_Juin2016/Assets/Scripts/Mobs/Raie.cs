@@ -13,6 +13,7 @@ public class Raie : EnemyScript {
 	void Start () {
 		maxCpt = Random.Range (0.7f, 1.3f);
 		cptSpawn = maxCpt;
+		Destroy (this.gameObject, 10f);
 	}
 	
 

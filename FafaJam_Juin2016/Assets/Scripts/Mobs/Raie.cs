@@ -11,6 +11,7 @@ public class Raie : EnemyScript {
 	private bool stop = false;
 
 	void Start () {
+        enemyName = "Raie";
 		maxCpt = Random.Range (0.7f, 1.3f);
 		cptSpawn = maxCpt;
 	}
@@ -50,10 +51,10 @@ public class Raie : EnemyScript {
 			Destroy (coll.gameObject);
 			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
 			if (this.pv <= 0) {
-				//manager.updateScore (scoreValue);
-				Destroy (this.gameObject);
-			}
-		}
+                //manager.updateScore (scoreValue);
+                getKilled();
+            }
+        }
 	}
 
 }

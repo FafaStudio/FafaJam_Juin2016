@@ -7,6 +7,7 @@ public class Blobfish : EnemyScript {
 	public float rotation = 100f;
 
 	void Start () {
+        enemyName = "Blobfish";
 		if (target.transform.position.x < 0) {
 			this.GetComponent<MovementScript> ().direction = new Vector2 (this.transform.position.x - target.transform.position.x, this.transform.position.y - target.transform.position.y + 12);
 		}else

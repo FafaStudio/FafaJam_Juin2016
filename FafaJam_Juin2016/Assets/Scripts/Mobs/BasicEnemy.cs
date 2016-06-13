@@ -22,6 +22,7 @@ public class BasicEnemy : EnemyScript {
 	private float timeBetweenBuble;
 
 	void Start () {
+        enemyName = "BasicEnemy";
 		anim = this.GetComponent<Animator> ();
 		weapon = this.GetComponent<WeaponManager> ();
 		maxRate = weapon.shootingRate;
@@ -102,8 +103,10 @@ public class BasicEnemy : EnemyScript {
 			Destroy (coll.gameObject);
 			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
 			if (this.pv <= 0) {
+                getKilled();
+                /*GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore("BasicEnemy");
 				//manager.updateScore (scoreValue);
-				Destroy (this.gameObject);
+				Destroy (this.gameObject);*/
 			}
 		}
 	}

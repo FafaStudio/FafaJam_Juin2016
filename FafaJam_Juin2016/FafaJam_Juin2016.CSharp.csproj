@@ -84,9 +84,11 @@
     <Compile Include="Assets\Scripts\Mobs\Raie.cs" />
     <Compile Include="Assets\Scripts\MovementScript.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\SpawnerChief.cs" />
     <Compile Include="Assets\Scripts\SpawnerManager.cs" />
     <Compile Include="Assets\Scripts\UI\LifeDisplay.cs" />
+    <Compile Include="Assets\Scripts\UI\ScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\Weapon\GrenadeScript.cs" />
     <Compile Include="Assets\Scripts\Weapon\OursinScript.cs" />
     <Compile Include="Assets\Scripts\Weapon\ShotScript.cs" />

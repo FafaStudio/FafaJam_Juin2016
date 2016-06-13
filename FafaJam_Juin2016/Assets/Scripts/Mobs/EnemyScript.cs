@@ -6,6 +6,7 @@ public class EnemyScript : MonoBehaviour {
 	public int pv;
 	public int scoreValue;
 	protected GameObject target;
+    public string enemyName;
 
 	//protected GameManager manager;
 
@@ -21,11 +22,18 @@ public class EnemyScript : MonoBehaviour {
 			Destroy (coll.gameObject);
 			//StartCoroutine (coll.gameObject.GetComponent<ShotScript> ().startEnd ());
 			if (this.pv <= 0) {
-				//manager.updateScore (scoreValue);
-				Destroy (this.gameObject);
+                //manager.updateScore (scoreValue);
+                getKilled();
 			}
 		}
 	}
+
+    public void getKilled()
+    {
+
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
+        Destroy(this.gameObject);
+    }
 		
 	void OnPauseGame(){
 		this.enabled = false;

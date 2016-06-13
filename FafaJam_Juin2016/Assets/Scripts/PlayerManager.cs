@@ -92,6 +92,7 @@ public class PlayerManager : MonoBehaviour {
         else if (jumpStart > 1f && Time.time - jumpStart < jumpDuration && isJumping)
         {
             speed.y = movementY;
+
         }
         else
         {
@@ -101,10 +102,10 @@ public class PlayerManager : MonoBehaviour {
 
 
     private void doMovement(){
-		body.velocity = speed;
-	}
+        body.velocity = speed;
+    }
 
-	private void setOmbre(bool value){
+    private void setOmbre(bool value){
 		for (int i = 0; i < ombres.Length; i++) {
 			ombres [i].gameObject.SetActive (value);
 		}

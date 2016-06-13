@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 	void Start()
 	{
 
-		Cursor.visible = false;
+		//Cursor.visible = false;
 	}
 
 	void Update()

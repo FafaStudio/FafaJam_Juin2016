@@ -7,13 +7,17 @@ public class Blobfish : EnemyScript {
 	public float rotation = 100f;
 
 	void Start () {
+<<<<<<< HEAD
         enemyName = "Blobfish";
+=======
+		Destroy (this.gameObject, 10f);
+>>>>>>> c156b72ebcd457a894f1620fc0a645cb0899e235
 		if (target.transform.position.x < 0) {
 			this.GetComponent<MovementScript> ().direction = new Vector2 (this.transform.position.x - target.transform.position.x, this.transform.position.y - target.transform.position.y + 12);
 		}else
 			this.GetComponent<MovementScript> ().direction = new Vector2 (this.transform.position.x - target.transform.position.x, this.transform.position.y - target.transform.position.y );
 		this.GetComponent<MovementScript> ().speed = miseAuPointShoot((target.transform.position - this.transform.position).normalized*0.75f );
-		Destroy (this, 6f);
+
 	}
 
 	// Update is called once per frame

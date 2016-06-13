@@ -1,9 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BasicEnemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Mobs/Raie.cs">
     <Files>
-      <File FileName="Assets/Scripts/BasicEnemy.cs" Line="30" Column="2" />
-      <File FileName="Assets/Scripts/AttackerManager.cs" Line="186" Column="63" />
+      <File FileName="Assets/Scripts/Mobs/Blobfish.cs" Line="14" Column="47" />
+      <File FileName="Assets/Scripts/PlayerManager.cs" Line="23" Column="32" />
+      <File FileName="Assets/Scripts/SpawnerChief.cs" Line="69" Column="39" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="42" Column="25" />
+      <File FileName="Assets/Scripts/Mobs/BasicEnemy.cs" Line="100" Column="37" />
+      <File FileName="Assets/Scripts/Weapon/WeaponManager.cs" Line="11" Column="8" />
+      <File FileName="Assets/Scripts/AttackerManager.cs" Line="159" Column="23" />
+      <File FileName="Assets/Scripts/Mobs/Raie.cs" Line="31" Column="23" />
+      <File FileName="Assets/Scripts/Weapon/GrenadeScript.cs" Line="12" Column="25" />
+      <File FileName="Assets/Scripts/Weapon/ShotScript.cs" Line="29" Column="2" />
+      <File FileName="Assets/Scripts/Weapon/OursinScript.cs" Line="19" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

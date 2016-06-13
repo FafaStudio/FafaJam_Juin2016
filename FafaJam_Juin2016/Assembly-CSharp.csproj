@@ -46,27 +46,33 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AttackerManager.cs" />
-     <Compile Include="Assets\Scripts\BasicEnemy.cs" />
-     <Compile Include="Assets\Scripts\BubleLauncher.cs" />
-     <Compile Include="Assets\Scripts\BubleParticle.cs" />
-     <Compile Include="Assets\Scripts\CameraManager.cs" />
+     <Compile Include="Assets\Scripts\BaleineSpawner.cs" />
      <Compile Include="Assets\Scripts\DefenderManager.cs" />
-     <Compile Include="Assets\Scripts\EnemyScript.cs" />
+     <Compile Include="Assets\Scripts\Effects\BubleParticle.cs" />
+     <Compile Include="Assets\Scripts\Effects\CameraEffectDezoom.cs" />
+     <Compile Include="Assets\Scripts\Effects\CameraManager.cs" />
+     <Compile Include="Assets\Scripts\Effects\HitColorChange.cs" />
+     <Compile Include="Assets\Scripts\Effects\Ombre.cs" />
+     <Compile Include="Assets\Scripts\Effects\ScrollingScript.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\GrenadeScript.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\Items\Item_Life_Bonus.cs" />
      <Compile Include="Assets\Scripts\Items\Item_Life_Malus.cs" />
      <Compile Include="Assets\Scripts\Items\SpawnerItem.cs" />
+     <Compile Include="Assets\Scripts\Mobs\Baleine.cs" />
+     <Compile Include="Assets\Scripts\Mobs\BasicEnemy.cs" />
+     <Compile Include="Assets\Scripts\Mobs\Blobfish.cs" />
+     <Compile Include="Assets\Scripts\Mobs\EnemyScript.cs" />
+     <Compile Include="Assets\Scripts\Mobs\Raie.cs" />
      <Compile Include="Assets\Scripts\MovementScript.cs" />
-     <Compile Include="Assets\Scripts\Ombre.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
-     <Compile Include="Assets\Scripts\ScrollingScript.cs" />
-     <Compile Include="Assets\Scripts\ShotScript.cs" />
      <Compile Include="Assets\Scripts\SpawnerChief.cs" />
      <Compile Include="Assets\Scripts\SpawnerManager.cs" />
      <Compile Include="Assets\Scripts\UI\LifeDisplay.cs" />
-     <Compile Include="Assets\Scripts\WeaponManager.cs" />
+     <Compile Include="Assets\Scripts\Weapon\GrenadeScript.cs" />
+     <Compile Include="Assets\Scripts\Weapon\OursinScript.cs" />
+     <Compile Include="Assets\Scripts\Weapon\ShotScript.cs" />
+     <Compile Include="Assets\Scripts\Weapon\WeaponManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

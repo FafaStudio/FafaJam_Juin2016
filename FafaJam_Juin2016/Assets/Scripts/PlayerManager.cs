@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour {
     private bool isJumping = true;
     private float jumpDuration = 0.1f;
     private float jumpStart = 0f;
+
 	public int maxPv;
 	private int curPv;
 
@@ -192,10 +193,6 @@ public class PlayerManager : MonoBehaviour {
 
 
 	//COLLISION________________________________________________________________________________________________________________
-
-	void OnTriggerEnter2D(Collider2D col){
-	}
-
 
     public void OnCollisionEnter2D(Collision2D col)
     {

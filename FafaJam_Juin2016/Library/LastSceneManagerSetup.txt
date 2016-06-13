@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/LevelHugo.unity
+- path: Assets/Scenes/LevelAxel.unity
   isLoaded: 1
   isActive: 1

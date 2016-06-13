@@ -18,12 +18,7 @@ public class GameManager : MonoBehaviour {
 
 	void Start()
 	{
-<<<<<<< HEAD
-
 		//Cursor.visible = false;
-=======
-		Cursor.visible = false;
->>>>>>> 404cb1416182632a0e13cc91e4759812e7c09a45
 	}
 
 	void Update()

@@ -8,6 +8,7 @@ public class SpawnerChief : MonoBehaviour {
 	// 2 : blob fish
 	// 3 : raie droite
 	// 4 : raie gauche
+	//5 : vive
 
 	public float maxCompteurWave = 5f;
 	private float compteur;
@@ -32,48 +33,39 @@ public class SpawnerChief : MonoBehaviour {
 	}
 
 	public void launchWaves(){
-		int choice = Random.Range (0, 5);
+		int choice = Random.Range (0, 4);
 		switch (choice) {
 		case 0:
 			spawnerMobs[0].setSequence (5, 2f);
-			spawnerMobs[1].setSequence (3, 2f);
-			spawnerMobs[2].setSequence (3, 2f);
-			spawnerMobs[3].setSequence (1, 2f);
-			spawnerMobs[4].setSequence (1, 2f);
+			spawnerMobs[1].setSequence (3, Random.Range(2f,5f));
+			spawnerMobs[2].setSequence (3, Random.Range(2f,5f));
+			spawnerMobs[3].setSequence (1,Random.Range(2f,5f));
+			spawnerMobs[4].setSequence (1,Random.Range(2f,5f));
+			spawnerMobs[5].setSequence (2, Random.Range(2f,4f));
 			break;
 		case 1:
 			spawnerMobs[0].setSequence (10, 3f);
 			spawnerMobs[1].setSequence (3, 2f);
-			spawnerMobs[2].setSequence (3, 2f);
-			spawnerMobs[3].setSequence (1, 2f);
-			spawnerMobs[4].setSequence (1, 2f);
+			spawnerMobs[2].setSequence (3,Random.Range(2f,4f));
+			spawnerMobs[3].setSequence (1, Random.Range(2f,4f));
+			spawnerMobs[4].setSequence (1, Random.Range(2f,4f));
+			spawnerMobs[5].setSequence (2, Random.Range(2f,4f));
 			break;
 		case 2:
 			spawnerMobs[0].setSequence (10, 3f);
 			spawnerMobs[1].setSequence (4, 2f);
-			spawnerMobs[2].setSequence (3, 2f);
-			spawnerMobs[3].setSequence (1, 2f);
-			spawnerMobs[4].setSequence (1, 2f);
+			spawnerMobs[2].setSequence (3, Random.Range(2f,4f));
+			spawnerMobs[3].setSequence (1, Random.Range(2f,4f));
+			spawnerMobs[4].setSequence (1, Random.Range(2f,4f));
+			spawnerMobs[5].setSequence (1, Random.Range(2f,4f));
 			break;
 		case 3:
-			spawnerMobs[0].setSequence (10, 1f);
-			spawnerMobs[1].setSequence (3, 2f);
-			spawnerMobs[2].setSequence (3, 2f);
-			spawnerMobs[3].setSequence (1, 2f);
-			spawnerMobs[4].setSequence (1, 2f);
-			break;
-		case 4:
-			spawnerMobs[0].setSequence (3, 3f);
-			spawnerMobs[1].setSequence (3, 2f);
-			spawnerMobs[2].setSequence (3, 2f);
-			spawnerMobs[3].setSequence (1, 2f);
-			spawnerMobs[4].setSequence (1, 2f);
-			break;
-		case 5:
-			spawnerMobs[0].setSequence (5, 2f);
-			spawnerMobs[1].setSequence (8, 1f);
-			spawnerMobs[3].setSequence (1, 2f);
-			spawnerMobs[4].setSequence (1, 2f);
+			spawnerMobs [0].setSequence (10, 1f);
+			spawnerMobs [1].setSequence (3, 2f);
+			spawnerMobs [2].setSequence (3, Random.Range (2f, 4f));
+			spawnerMobs [3].setSequence (1, Random.Range (2f, 4f));
+			spawnerMobs [4].setSequence (1, Random.Range (2f, 4f));
+			spawnerMobs [5].setSequence (1, Random.Range (2f, 4f));
 			break;
 		}
 	}

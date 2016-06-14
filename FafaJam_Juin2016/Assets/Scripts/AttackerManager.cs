@@ -144,13 +144,17 @@ public class AttackerManager : MonoBehaviour {
 			Destroy (coll.gameObject);
 			playerManager.camera.setShake (0.05f);
 			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
-			foreach (HitColorChange hit in GetComponentsInChildren<HitColorChange>()) {
-				StartCoroutine (hit.launchHit());
-			}
+			launchHitAnim ();
 			if (playerManager.getPv() <= 0) {
 				//manager.updateScore (scoreValue);
 				Destroy (this.gameObject);
 			}
+		}
+	}
+
+	public void launchHitAnim(){
+		foreach (HitColorChange hit in GetComponentsInChildren<HitColorChange>()) {
+			StartCoroutine (hit.launchHit());
 		}
 	}
 

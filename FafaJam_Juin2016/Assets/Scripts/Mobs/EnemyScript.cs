@@ -39,7 +39,7 @@ public class EnemyScript : MonoBehaviour {
     public void getKilled()
     {
 
-        GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
+//        GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
         Destroy(this.gameObject);
     }
 		

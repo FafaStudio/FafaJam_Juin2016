@@ -141,9 +141,39 @@ public class BasicEnemy : EnemyScript {
 		explosionTransform.parent = parent.transform;
 		//explosionTransform.position = this.transform.position;
 	}
-		
 
-	void OnPauseGame(){
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "TIRPlayer")
+        {
+            this.pv -= 1;
+            Destroy(coll.gameObject);
+            StartCoroutine(this.GetComponent<HitColorChange>().launchHit());
+
+            if (this.pv == 0)
+            {
+                StartCoroutine(startDeath());
+            }
+        }
+        else if(coll.gameObject.tag == "Player")
+        {
+            this.GetComponent<BoxCollider2D>().isTrigger = true;
+            this.GetComponent<Rigidbody2D>().gravityScale = 0;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D coll)
+    {
+        if(coll.gameObject.tag == "Player")
+        {
+            this.GetComponent<BoxCollider2D>().isTrigger = false;
+            this.GetComponent<Rigidbody2D>().gravityScale = 10;
+        }
+    }
+
+
+
+    void OnPauseGame(){
 		this.enabled = false;
 	}
 

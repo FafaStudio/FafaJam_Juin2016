@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Effects\Ombre.cs" />
     <Compile Include="Assets\Scripts\Effects\ScrollingScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\HighScore.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Items\Item_Life_Bonus.cs" />
     <Compile Include="Assets\Scripts\Items\Item_Life_Malus.cs" />

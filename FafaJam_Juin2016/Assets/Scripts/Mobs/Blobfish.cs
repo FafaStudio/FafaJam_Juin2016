@@ -8,7 +8,6 @@ public class Blobfish : EnemyScript {
 
 	void Start () {
         enemyName = "Blobfish";
-		Destroy (this.gameObject, 10f);
 		if (target.transform.position.x < 0) {
 			this.GetComponent<MovementScript> ().direction = new Vector2 (this.transform.position.x - target.transform.position.x, this.transform.position.y - target.transform.position.y + 12);
 		}else
@@ -17,7 +16,6 @@ public class Blobfish : EnemyScript {
 
 	}
 
-	// Update is called once per frame
 	void Update () {
 		transform.Rotate (Vector3.back * (rotation * Time.deltaTime));
 	}

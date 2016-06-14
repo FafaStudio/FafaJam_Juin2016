@@ -21,7 +21,10 @@ public class SpawnerManager : MonoBehaviour {
 	public bool isDezoomed = false;
 
 	protected GameObject spawnerBox;
-
+	void Awake(){
+		spawnerBox = new GameObject ("mobsInside");
+		spawnerBox.transform.parent = spawnerBox.transform;
+	}
 	void Start () {
 		chronoPowerUp = Random.Range (5f, 30f);
 		chronoBasicEnemy = Random.Range (2f, 6f);
@@ -84,9 +87,11 @@ public class SpawnerManager : MonoBehaviour {
 	}
 
 	public void setSequence(int compteur, float timeBetweenInstance){
-		if (spawnerBox.GetComponentsInChildren<Transform> ().Length > 5) {
-			isActiveMob = false;
-			return;
+		if (spawnerBox.GetComponentsInChildren<Transform> () != null) {
+			if (spawnerBox.GetComponentsInChildren<Transform> ().Length > 5) {
+				isActiveMob = false;
+				return;
+			}
 		}
 		this.maxCpt = compteur;
 		cpt = maxCpt;

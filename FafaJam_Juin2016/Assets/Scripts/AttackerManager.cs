@@ -92,7 +92,6 @@ public class AttackerManager : MonoBehaviour {
 			playerManager.camera.setShake (0.01f);
             weaponManager.directionAttack = finalPosition;
 			weaponManager.AttackWithSpecialPosition (GameObject.Find ("WeaponCanonMorue").transform.position);
-		
         }
     }
 

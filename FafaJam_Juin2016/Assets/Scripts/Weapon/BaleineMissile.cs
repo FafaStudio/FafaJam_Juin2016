@@ -3,25 +3,26 @@ using System.Collections;
 
 public class BaleineMissile : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public Transform fumeParticle;
 
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Player") {
-			Destroy (this.gameObject);
+			StartCoroutine (startDeath ());
 		}
-		if (coll.gameObject.tag == "sol") {
-			Destroy (this.gameObject);
+		if (coll.gameObject.tag == "Sol") {
+			StartCoroutine (startDeath ());
 		}
 		if (coll.gameObject.tag == "Bouclier") {
-			Destroy (this.gameObject);
+			StartCoroutine (startDeath ());
 		}
 	}
+
+	public IEnumerator startDeath(){
+		var puTransform = Instantiate (fumeParticle) as Transform;
+		puTransform.position = this.transform.position;
+		yield return new WaitForSeconds (0.1f);
+		Destroy (this.gameObject);
+	}
+
+		
 }

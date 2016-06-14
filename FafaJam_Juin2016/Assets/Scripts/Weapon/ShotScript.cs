@@ -28,7 +28,9 @@ public class ShotScript : MonoBehaviour {
 
 	public virtual void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag == "Bouclier") {
-			Destroy (this.gameObject);
+			Vector2 ricoche = new Vector2 (-this.GetComponent<MovementScript> ().direction.x, Random.Range (0.5f, 6f));
+			this.GetComponent<MovementScript>().direction = ricoche;
+			this.transform.rotation = Quaternion.Euler (0f, 0f, (Mathf.Atan2 ((ricoche.y), (ricoche.x)) * Mathf.Rad2Deg));
 		}
 	}
 

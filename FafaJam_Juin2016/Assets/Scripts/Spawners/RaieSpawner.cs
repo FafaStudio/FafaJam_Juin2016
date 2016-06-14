@@ -18,7 +18,7 @@ public class RaieSpawner : SpawnerManager {
 				puTransform.GetComponent<Raie> ().setDirection (-1);
 			}
 
-			newPos = new Vector3 (this.transform.position.x, this.transform.position.y+Random.Range(-1f, 2f), 0f);
+			newPos = new Vector3 (this.transform.position.x, this.transform.position.y+Random.Range(-1f, 3.5f), 0f);
 			//}
 
 			puTransform.position = newPos;

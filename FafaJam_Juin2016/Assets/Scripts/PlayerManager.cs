@@ -195,7 +195,7 @@ public class PlayerManager : MonoBehaviour {
     }
     private void doSwap()
     {
-        if (Input.GetKey(KeyCode.E) && Time.time - swapTimer > swapDuration)
+        if (Input.GetKey(KeyCode.E) && Time.time - swapTimer > swapDuration && !isJumping)
         {
             swap();
             swapTimer = Time.time;

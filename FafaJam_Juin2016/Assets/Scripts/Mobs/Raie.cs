@@ -22,6 +22,8 @@ public class Raie : EnemyScript {
 	
 
 	void Update () {
+		if ((isDead)||(target == null))
+			return;
 		launchBubleParticle ();
 		if (stop)
 			return;

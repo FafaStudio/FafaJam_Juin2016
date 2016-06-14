@@ -29,10 +29,12 @@ public class PlayerManager : MonoBehaviour {
 
 	private Ombre[] ombres;
 
+	public bool isDead = false;
+
+	public Transform fumeParticle;
+
 	//private WeaponManager[] weapon;
 
-
-	private bool isDead = false;
 
 	Rigidbody2D body;
 
@@ -42,7 +44,8 @@ public class PlayerManager : MonoBehaviour {
 	public AudioClip musicPerso;
 	public AudioClip zikMort;
 
-	//AWAKE, START, UPDATE...______________________________________________________________________________________________
+//AWAKE, START, UPDATE...______________________________________________________________________________________________
+
 	void Awake(){
 		camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
 		//camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
@@ -104,6 +107,20 @@ public class PlayerManager : MonoBehaviour {
             speed.y = 0;
         }
     }
+
+	public virtual IEnumerator startDeath(){
+		isDead = true;
+		this.enabled = false;
+		Destroy (attacker);
+		Destroy (defender);
+		this.GetComponent<Explosion> ().launchExplosion (this.gameObject);
+		yield return new WaitForSeconds (0.2f);
+		var puTransform = Instantiate (fumeParticle) as Transform;
+		puTransform.position = this.transform.position;
+		yield return new WaitForSeconds (0.2f);
+		print ("bisous");
+		Destroy (this.gameObject);
+	}
 
 
     private void doMovement(){

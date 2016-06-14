@@ -22,7 +22,6 @@ public class Baleine : EnemyScript {
         enemyName = "Baleine";
 		animManager = this.GetComponent<Animator> ();
 	}
-	
 
 	void Update () {
 		if (isStopped)

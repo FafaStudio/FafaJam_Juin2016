@@ -13,7 +13,6 @@ public class AttackerManager : MonoBehaviour {
 	public GameObject bubbleEffect;
 	private float timeBetweenBuble;
 
-
     void Start () {
         weaponManager = gameObject.GetComponent<WeaponManager>();
         playerManager = gameObject.transform.parent.gameObject.GetComponent<PlayerManager>();
@@ -145,7 +144,7 @@ public class AttackerManager : MonoBehaviour {
 			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
 			launchHitAnim ();
 			if (playerManager.getPv() <= 0) {
-				Destroy (this.gameObject);
+				StartCoroutine (playerManager.startDeath ());
 			}
 		}
 	}

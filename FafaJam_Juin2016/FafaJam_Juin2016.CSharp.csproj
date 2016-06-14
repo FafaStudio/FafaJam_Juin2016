@@ -58,13 +58,18 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AttackerManager.cs" />
-    <Compile Include="Assets\Scripts\BaleineSpawner.cs" />
     <Compile Include="Assets\Scripts\DefenderManager.cs" />
     <Compile Include="Assets\Scripts\Effects\BubleParticle.cs" />
     <Compile Include="Assets\Scripts\Effects\CameraEffectDezoom.cs" />
@@ -85,10 +90,13 @@
     <Compile Include="Assets\Scripts\MovementScript.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
-    <Compile Include="Assets\Scripts\SpawnerChief.cs" />
-    <Compile Include="Assets\Scripts\SpawnerManager.cs" />
+    <Compile Include="Assets\Scripts\Spawners\BaleineSpawner.cs" />
+    <Compile Include="Assets\Scripts\Spawners\RaieSpawner.cs" />
+    <Compile Include="Assets\Scripts\Spawners\SpawnerChief.cs" />
+    <Compile Include="Assets\Scripts\Spawners\SpawnerManager.cs" />
     <Compile Include="Assets\Scripts\UI\LifeDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\ScoreDisplay.cs" />
+    <Compile Include="Assets\Scripts\Weapon\BaleineMissile.cs" />
     <Compile Include="Assets\Scripts\Weapon\GrenadeScript.cs" />
     <Compile Include="Assets\Scripts\Weapon\OursinScript.cs" />
     <Compile Include="Assets\Scripts\Weapon\ShotScript.cs" />

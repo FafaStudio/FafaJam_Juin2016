@@ -50,7 +50,15 @@ public class ScoreManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        scoreList = new Dictionary< string,ScoreElement >();
+        if (scoreList == null)
+        {
+            setUp();
+        }
+    }
+
+    private void setUp()
+    {
+        scoreList = new Dictionary<string, ScoreElement>();
         scoreList.Add("BasicEnemy", new ScoreElement(1f));
         scoreList.Add("Raie", new ScoreElement(1f));
         scoreList.Add("Blobfish", new ScoreElement(1f));
@@ -90,22 +98,33 @@ public class ScoreManager : MonoBehaviour {
 
     public string[] statToString()
     {
+        if (scoreList == null)
+        {
+            setUp();
+        }
         string[] stringed = new string[randomStatList.Count];
         int i = 0;
         foreach (KeyValuePair<string, RandomStat> statElement in randomStatList)
         {
             stringed[i] = statElement.Key + " : " + statElement.Value.getStat();
+            i++;
         }
         return stringed;
     }
     public string[] scoreToString()
     {
+        if (scoreList == null)
+        {
+            setUp();
+        }
         string[] stringed = new string[scoreList.Count];
         int i = 0;
         foreach (KeyValuePair<string, ScoreElement> scoreElement in scoreList)
         {
             stringed[i] = scoreElement.Key + " : " + scoreElement.Value.getScore();
+            i++;
         }
+
         return stringed;
     }
 

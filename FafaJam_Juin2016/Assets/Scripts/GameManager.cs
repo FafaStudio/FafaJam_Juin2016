@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour {
 	//PAUSE_____________________________________________________________________________________________________________
 
 	public void launchPaused(){
+        GameObject.FindGameObjectWithTag("ScoreDisplayer").GetComponent<ScoreDisplay>().displayScores();
 		isPaused = true;
 		Cursor.visible = true;
 		//musicLauncher.volume = 0.4f;
@@ -77,7 +78,8 @@ public class GameManager : MonoBehaviour {
 
 
 	public void resumeGame(){
-		isPaused = false;
+        GameObject.FindGameObjectWithTag("ScoreDisplayer").GetComponent<ScoreDisplay>().unDisplayScores();
+        isPaused = false;
 		Cursor.visible = false;
 		//musicLauncher.volume = 1f;
 		//	player.ui.pausePanel.SetActive (false);

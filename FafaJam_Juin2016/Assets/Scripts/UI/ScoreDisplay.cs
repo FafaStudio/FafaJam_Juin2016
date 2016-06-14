@@ -9,7 +9,6 @@ public class ScoreDisplay : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         scoreManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>();
-        displayScores();
     }
 
     // Update is called once per frame
@@ -30,6 +29,14 @@ public class ScoreDisplay : MonoBehaviour {
             actualTextDisplayer = Instantiate(textDisplayer);
             actualTextDisplayer.transform.SetParent(transform);
             actualTextDisplayer.GetComponent<Text>().text = stat;
+        }
+    }
+
+    public void unDisplayScores()
+    {
+        foreach(Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
         }
     }
 }

@@ -30,18 +30,14 @@ public class EnemyScript : MonoBehaviour {
 	}
 
 	public IEnumerator startDeath(){
-		var puTransform = Instantiate (fumeParticle) as Transform;
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
+        var puTransform = Instantiate (fumeParticle) as Transform;
 		puTransform.position = this.transform.position;
 		yield return new WaitForSeconds (0.1f);
 		Destroy (this.gameObject);
 	}
 
-    public void getKilled()
-    {
 
-//        GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
-        Destroy(this.gameObject);
-    }
 		
 	void OnPauseGame(){
 		this.enabled = false;

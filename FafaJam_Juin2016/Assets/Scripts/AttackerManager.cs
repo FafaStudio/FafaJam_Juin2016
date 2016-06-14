@@ -73,7 +73,7 @@ public class AttackerManager : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-           // GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Tirs Effectués");
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Tirs Effectués");
             Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             Vector3 playerPosition = gameObject.transform.position;
             Vector3 calculatedPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);

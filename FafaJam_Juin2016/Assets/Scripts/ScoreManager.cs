@@ -68,9 +68,10 @@ public class ScoreManager : MonoBehaviour {
     private void setUp()
     {
         scoreList = new Dictionary<string, ScoreElement>();
-        scoreList.Add("BasicEnemy", new ScoreElement(1f));
-        scoreList.Add("Raie", new ScoreElement(1f));
-        scoreList.Add("Blobfish", new ScoreElement(1f));
+        scoreList.Add("BasicEnemy", new ScoreElement(150f));
+        scoreList.Add("Raie", new ScoreElement(500f));
+        scoreList.Add("Blobfish", new ScoreElement(100f));
+        scoreList.Add("BigOrno", new ScoreElement(300f));
         scoreList.Add("Baleine", new ScoreElement(1f));
 
         randomStatList = new Dictionary<string, RandomStat>();

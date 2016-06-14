@@ -41,7 +41,8 @@ public class WeaponManager : MonoBehaviour
 	{
 		if (CanAttack)
 		{
-			shootCooldown = shootingRate;
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Tirs Effectués");
+            shootCooldown = shootingRate;
 			var shotTransform = Instantiate(shotPrefab) as Transform;
 			shotTransform.position = bullPosition;
 			shotTransform.gameObject.GetComponent<MovementScript> ().direction = directionAttack;
@@ -52,7 +53,8 @@ public class WeaponManager : MonoBehaviour
 	public void launchGrenade(Vector2 direction){
 		if (CanAttack)
 		{
-			shootCooldown = shootingRate;
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Grenades Lancées");
+            shootCooldown = shootingRate;
 			var shotTransform = Instantiate(shotPrefab) as Transform;
             shotTransform.position = new Vector3(this.transform.position.x - 0.35f, this.transform.position.y + 1.05f, +this.transform.position.z) ;
 			//shotTransform.gameObject.GetComponent<MovementScript> ().direction = directionAttack;

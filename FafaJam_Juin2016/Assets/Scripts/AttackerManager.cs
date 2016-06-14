@@ -73,7 +73,6 @@ public class AttackerManager : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Tirs Effectués");
             Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             Vector3 playerPosition = gameObject.transform.position;
             Vector3 calculatedPosition = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, playerPosition.z);
@@ -139,13 +138,13 @@ public class AttackerManager : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D coll)
 	{
 		if (coll.gameObject.tag == "enemyBullet") {
-			//playerManager.takeDamage(1);
-			Destroy (coll.gameObject);
+            playerManager.takeDamage(1);
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Dégâts Subies");
+            Destroy (coll.gameObject);
 			playerManager.camera.setShake (0.05f);
 			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
 			launchHitAnim ();
 			if (playerManager.getPv() <= 0) {
-				//manager.updateScore (scoreValue);
 				Destroy (this.gameObject);
 			}
 		}

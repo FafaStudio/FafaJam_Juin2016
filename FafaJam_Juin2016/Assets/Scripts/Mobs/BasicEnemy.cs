@@ -103,6 +103,7 @@ public class BasicEnemy : EnemyScript {
 			Destroy (coll.gameObject);
 			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
 			if (this.pv <= 0) {
+				launchExplosion (this.gameObject);
 				StartCoroutine(startDeath());
 			}
 		}
@@ -118,6 +119,23 @@ public class BasicEnemy : EnemyScript {
 				Instantiate (bubbleEffect, new Vector3 (this.transform.position.x + 0.3f, this.transform.position.y + 1f), Quaternion.identity);
 			timeBetweenBuble = Random.Range (2f, 4f);
 		}
+	}
+
+	public override IEnumerator startDeath(){
+		GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
+		this.GetComponent<SpriteRenderer> ().sprite = null;
+		//launchExplosion (this.gameObject);
+		//yield return new WaitForSeconds (0.2f);
+		var puTransform = Instantiate (fumeParticle) as Transform;
+		puTransform.position = this.transform.position;
+		yield return new WaitForSeconds (0.5f);
+		Destroy (this.gameObject);
+	}
+
+	public void launchExplosion(GameObject parent){
+		var explosionTransform = Instantiate(this.GetComponent<Explosion>().explosionGameObject, this.transform.position, Quaternion.identity) as Transform;
+		explosionTransform.parent = parent.transform;
+		//explosionTransform.position = this.transform.position;
 	}
 		
 

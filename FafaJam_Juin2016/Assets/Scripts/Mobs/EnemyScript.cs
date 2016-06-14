@@ -29,11 +29,14 @@ public class EnemyScript : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator startDeath(){
+	public virtual IEnumerator startDeath(){
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
-        var puTransform = Instantiate (fumeParticle) as Transform;
+		this.GetComponent<SpriteRenderer> ().sprite = null;
+		this.GetComponent<Explosion> ().launchExplosion (this.gameObject);
+		yield return new WaitForSeconds (0.2f);
+		var puTransform = Instantiate (fumeParticle) as Transform;
 		puTransform.position = this.transform.position;
-		yield return new WaitForSeconds (0.1f);
+		yield return new WaitForSeconds (0.2f);
 		Destroy (this.gameObject);
 	}
 

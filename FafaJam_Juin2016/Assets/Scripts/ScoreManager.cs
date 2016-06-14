@@ -80,6 +80,8 @@ public class ScoreManager : MonoBehaviour {
         randomStatList.Add("Grenades Lancées", new RandomStat());
         randomStatList.Add("Grenades Réussies", new RandomStat());
         randomStatList.Add("Grenades Touchées", new RandomStat());
+        randomStatList.Add("Missiles Détruits", new RandomStat());
+        randomStatList.Add("Missiles Esquivés", new RandomStat());
         randomStatList.Add("Dégâts Subies", new RandomStat());
     }
 

@@ -78,7 +78,7 @@ public class Raie : EnemyScript {
 	}
 
 
-	public override void OnTriggerEnter2D(Collider2D coll)
+	/*public override void OnTriggerEnter2D(Collider2D coll)
 	{
 		if (coll.gameObject.tag == "TIRPlayer") {
 			this.pv -= 1;
@@ -90,6 +90,6 @@ public class Raie : EnemyScript {
 				Destroy (this.gameObject);
 			}
 		}
-    }
+    }*/
 
 }

@@ -95,7 +95,7 @@ public class BasicEnemy : EnemyScript {
 		}else
 			weapon.directionAttack = new Vector2(-1f, 0f);
 	}
-
+    /*
 	public override void OnTriggerEnter2D(Collider2D coll)
 	{
 		if (coll.gameObject.tag == "TIRPlayer") {
@@ -107,7 +107,7 @@ public class BasicEnemy : EnemyScript {
 				StartCoroutine(startDeath());
 			}
 		}
-	}
+	}*/
 
 	public void launchBubleParticle(){
 		if (timeBetweenBuble > 0) {
@@ -121,7 +121,7 @@ public class BasicEnemy : EnemyScript {
 		}
 	}
 
-	public override IEnumerator startDeath(){
+	/*public override IEnumerator startDeath(){
 		GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
 		this.GetComponent<SpriteRenderer> ().sprite = null;
 		//launchExplosion (this.gameObject);
@@ -130,7 +130,7 @@ public class BasicEnemy : EnemyScript {
 		puTransform.position = this.transform.position;
 		yield return new WaitForSeconds (0.5f);
 		Destroy (this.gameObject);
-	}
+	}*/
 
 	public void launchExplosion(GameObject parent){
 		var explosionTransform = Instantiate(this.GetComponent<Explosion>().explosionGameObject, this.transform.position, Quaternion.identity) as Transform;

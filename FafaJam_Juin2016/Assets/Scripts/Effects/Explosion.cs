@@ -9,5 +9,6 @@ public class Explosion : MonoBehaviour {
 		var explosionTransform = Instantiate(explosionGameObject) as Transform;
 		explosionTransform.parent = parent.transform;
 		explosionTransform.position = this.transform.position;
+        explosionTransform.localScale = new Vector3(1, 1, 0);
 	}
 }

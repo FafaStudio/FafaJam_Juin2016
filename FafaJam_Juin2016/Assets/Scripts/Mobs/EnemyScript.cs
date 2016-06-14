@@ -22,7 +22,9 @@ public class EnemyScript : MonoBehaviour {
 		if (coll.gameObject.tag == "TIRPlayer") {
 			this.pv -= 1;
 			Destroy (coll.gameObject);
-			if (this.pv <= 0) {
+            StartCoroutine(this.GetComponent<HitColorChange>().launchHit());
+
+            if (this.pv == 0) {
 				//manager.updateScore (scoreValue);
 				StartCoroutine (startDeath ());
 			}
@@ -33,7 +35,7 @@ public class EnemyScript : MonoBehaviour {
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
 		this.GetComponent<SpriteRenderer> ().sprite = null;
 		this.GetComponent<Explosion> ().launchExplosion (this.gameObject);
-		yield return new WaitForSeconds (0.2f);
+        yield return new WaitForSeconds (0.2f);
 		var puTransform = Instantiate (fumeParticle) as Transform;
 		puTransform.position = this.transform.position;
 		yield return new WaitForSeconds (0.2f);

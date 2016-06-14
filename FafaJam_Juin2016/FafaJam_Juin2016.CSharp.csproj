@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Effects\CameraEffectDezoom.cs" />
     <Compile Include="Assets\Scripts\Effects\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Effects\ElecParticle.cs" />
+    <Compile Include="Assets\Scripts\Effects\Explosion.cs" />
     <Compile Include="Assets\Scripts\Effects\HitColorChange.cs" />
     <Compile Include="Assets\Scripts\Effects\Ombre.cs" />
     <Compile Include="Assets\Scripts\Effects\ScrollingScript.cs" />

@@ -94,7 +94,7 @@ public class CameraEffectDezoom : MonoBehaviour {
 				ombre.GetComponent<Ombre> ().isDezoomed = true;
 		}
 		foreach (GameObject spawner in GameObject.FindGameObjectsWithTag ("SpawnerSol")) {
-			print (GameObject.FindGameObjectsWithTag ("Spawner").Length.ToString ());
+			//print (GameObject.FindGameObjectsWithTag ("Spawner").Length.ToString ());
 			spawner.GetComponent<SpawnerManager> ().isDezoomed = isDezoomed;
 		}
 	}

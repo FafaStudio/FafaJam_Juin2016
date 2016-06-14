@@ -58,22 +58,18 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AttackerManager.cs" />
+    <Compile Include="Assets\Scripts\DeathChrono.cs" />
     <Compile Include="Assets\Scripts\DefenderManager.cs" />
     <Compile Include="Assets\Scripts\Effects\BubleParticle.cs" />
     <Compile Include="Assets\Scripts\Effects\CameraEffectDezoom.cs" />
     <Compile Include="Assets\Scripts\Effects\CameraManager.cs" />
+    <Compile Include="Assets\Scripts\Effects\ElecParticle.cs" />
     <Compile Include="Assets\Scripts\Effects\HitColorChange.cs" />
     <Compile Include="Assets\Scripts\Effects\Ombre.cs" />
     <Compile Include="Assets\Scripts\Effects\ScrollingScript.cs" />
@@ -87,6 +83,7 @@
     <Compile Include="Assets\Scripts\Mobs\Blobfish.cs" />
     <Compile Include="Assets\Scripts\Mobs\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\Mobs\Raie.cs" />
+    <Compile Include="Assets\Scripts\Mobs\vive.cs" />
     <Compile Include="Assets\Scripts\MovementScript.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
@@ -94,6 +91,7 @@
     <Compile Include="Assets\Scripts\Spawners\RaieSpawner.cs" />
     <Compile Include="Assets\Scripts\Spawners\SpawnerChief.cs" />
     <Compile Include="Assets\Scripts\Spawners\SpawnerManager.cs" />
+    <Compile Include="Assets\Scripts\Spawners\ViveSpwaner.cs" />
     <Compile Include="Assets\Scripts\UI\LifeDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\ScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\Weapon\BaleineMissile.cs" />

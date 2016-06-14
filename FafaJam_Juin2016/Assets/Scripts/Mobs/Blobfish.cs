@@ -8,15 +8,13 @@ public class Blobfish : EnemyScript {
 
 	void Start () {
         enemyName = "Blobfish";
-		if (target.transform.position.x < 0) {
-			this.GetComponent<MovementScript> ().direction = new Vector2 (this.transform.position.x - target.transform.position.x, this.transform.position.y - target.transform.position.y + 12);
-		}else
-			this.GetComponent<MovementScript> ().direction = new Vector2 (this.transform.position.x - target.transform.position.x, this.transform.position.y - target.transform.position.y );
-		this.GetComponent<MovementScript> ().speed = miseAuPointShoot((target.transform.position - this.transform.position).normalized*0.75f );
+        print(target.transform.position);
+        print(this.transform.position);
+        
+        this.GetComponent<MovementScript>().direction = new Vector2(target.transform.position.x - this.transform.position.x, target.transform.position.y - this.transform.position.y) * Mathf.Abs((1/(target.transform.position.x - this.transform.position.x)));
+    }
 
-	}
-
-	void Update () {
+    void Update () {
 		transform.Rotate (Vector3.back * (rotation * Time.deltaTime));
 	}
 

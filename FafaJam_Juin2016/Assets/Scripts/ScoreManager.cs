@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
+	
     class ScoreElement
     {
         float multiplier;
@@ -52,8 +54,11 @@ public class ScoreManager : MonoBehaviour {
     Dictionary<string, RandomStat> randomStatList;
     public float score;
 
+	public Text scoreDisplayer;
+
     // Use this for initialization
     void Start () {
+		scoreDisplayer = GameObject.Find ("ScoreDisplay").GetComponent<Text> ();
         if (scoreList == null)
         {
             setUp();
@@ -89,6 +94,8 @@ public class ScoreManager : MonoBehaviour {
     public void addScore(string scoreType)
     {
         scoreList[scoreType].incremente();
+		score = calculScore();
+		updateUI (score);
     }
 
     public void addStat(string statType)
@@ -108,6 +115,10 @@ public class ScoreManager : MonoBehaviour {
 
         return finalScore;
     }
+
+	public void updateUI(float score){
+		scoreDisplayer.text = score.ToString ();
+	}
 
     public string[] statToString()
     {
@@ -140,9 +151,5 @@ public class ScoreManager : MonoBehaviour {
 
         return stringed;
     }
-
-    // Update is called once per frame
-    void FixedUpdate () {
-        score = calculScore();
-	}
+		
 }

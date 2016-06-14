@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour {
 
@@ -18,6 +19,8 @@ public class PlayerManager : MonoBehaviour {
 
 	public int maxPv;
 	private int curPv;
+
+	public Slider hpUI;
 
 
     private bool swapped = false;
@@ -47,14 +50,16 @@ public class PlayerManager : MonoBehaviour {
 //AWAKE, START, UPDATE...______________________________________________________________________________________________
 
 	void Awake(){
+		curPv = maxPv;
+		hpUI = GameObject.Find ("HpSlider").GetComponent<Slider> ();
 		camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
+		hpUI.value = (curPv / maxPv) ;
 		//camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
 	}
 	void Start () {
 		body = GetComponent<Rigidbody2D> ();
 		ombres= this.GetComponentsInChildren<Ombre> ();
 		setOmbre (true);
-		curPv = maxPv;
 	}
 
 	void Update () {
@@ -242,6 +247,7 @@ public class PlayerManager : MonoBehaviour {
 		this.curPv -= nbr;
 		camera.setShake (0.3f);
 		testEstMort ();
+		uploadLife ();
 	}
 
     public void pvRegen(int nbr)
@@ -258,6 +264,10 @@ public class PlayerManager : MonoBehaviour {
 		if (this.curPv <= 0) {
 			isDead =true;
 		}
+	}
+
+	public void uploadLife(){
+		hpUI.value = ((float)this.curPv / (float)this.maxPv) ;
 	}
 
 

@@ -41,6 +41,7 @@ public class GrenadeScript : ShotScript {
                         aTouche = true;
                         GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Grenades Réussies");
                     }
+					Destroy (colliders [i].gameObject, 0.4f);
                     StartCoroutine(colliders [i].GetComponent<EnemyScript> ().startDeath ());
                     GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Grenades Touchées");
 

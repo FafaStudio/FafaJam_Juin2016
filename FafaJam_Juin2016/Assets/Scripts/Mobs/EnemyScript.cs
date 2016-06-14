@@ -36,6 +36,9 @@ public class EnemyScript : MonoBehaviour {
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
 		isDead = true;
 		this.GetComponent<SpriteRenderer> ().sprite = null;
+		if (this.GetComponent<Animator> () != null) {
+			this.GetComponent<Animator> ().Stop ();
+		}
 		this.GetComponent<Explosion> ().launchExplosion (this.gameObject);
         yield return new WaitForSeconds (0.2f);
 		var puTransform = Instantiate (fumeParticle) as Transform;

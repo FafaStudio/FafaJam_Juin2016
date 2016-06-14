@@ -33,6 +33,8 @@ public class BasicEnemy : EnemyScript {
 	}
 
 	void Update () {
+		if ((isDead)||(target == null))
+			return;
 		launchBubleParticle ();
 		if (isSpawnedRight) {
 			if ((this.transform.position.x - target.transform.position.x) < rangeToPlayer) {
@@ -124,6 +126,8 @@ public class BasicEnemy : EnemyScript {
 	public override IEnumerator startDeath(){
 		GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
 		this.GetComponent<SpriteRenderer> ().sprite = null;
+		isDead = true;
+		this.enabled = false;
 		//launchExplosion (this.gameObject);
 		//yield return new WaitForSeconds (0.2f);
 		var puTransform = Instantiate (fumeParticle) as Transform;

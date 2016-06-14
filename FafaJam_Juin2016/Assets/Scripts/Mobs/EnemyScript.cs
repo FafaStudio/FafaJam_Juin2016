@@ -7,6 +7,7 @@ public class EnemyScript : MonoBehaviour {
 	public int scoreValue;
 	protected GameObject target;
     public string enemyName;
+	protected bool isDead = false;
 
 	public Transform fumeParticle;
 
@@ -31,6 +32,7 @@ public class EnemyScript : MonoBehaviour {
 
 	public virtual IEnumerator startDeath(){
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addScore(enemyName);
+		isDead = true;
 		this.GetComponent<SpriteRenderer> ().sprite = null;
 		this.GetComponent<Explosion> ().launchExplosion (this.gameObject);
 		yield return new WaitForSeconds (0.2f);

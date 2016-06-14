@@ -32,7 +32,6 @@ public class DefenderManager : MonoBehaviour {
 		Vector2 direction;
 		if (Input.GetKey(KeyCode.A))
         {
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Grenades Lancées");
             if (playerManager.getSwapPosition())//tireur a gauche
             {
 				direction = new Vector2 (20f, 10f);

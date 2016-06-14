@@ -36,9 +36,16 @@ public class GrenadeScript : ShotScript {
             {
                 if(colliders[i].tag == "Enemy")
                 {
-					StartCoroutine(colliders [i].GetComponent<EnemyScript> ().startDeath ());
-            }
-			StartCoroutine (startExplosion ());
+                    if (!aTouche)
+                    {
+                        aTouche = true;
+                        GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Grenades Réussies");
+                    }
+                    StartCoroutine(colliders [i].GetComponent<EnemyScript> ().startDeath ());
+                    GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Grenades Touchées");
+
+                }
+                StartCoroutine (startExplosion ());
         }
     }
 	}

@@ -26,18 +26,22 @@ public class ScoreManager : MonoBehaviour {
 
     class RandomStat
     {
-        int value;
+        float value;
         public RandomStat()
         {
             this.value = 0;
         }
-        public int getStat()
+        public float getStat()
         {
             return this.value;
         }
         public void incremente()
         {
             this.value++;
+        }
+        public void add(float added)
+        {
+            this.value += added;
         }
     }
 
@@ -56,6 +60,11 @@ public class ScoreManager : MonoBehaviour {
         }
     }
 
+    void Update()
+    {
+        randomStatList["Timer"].add(Time.deltaTime);
+    }
+
     private void setUp()
     {
         scoreList = new Dictionary<string, ScoreElement>();
@@ -65,6 +74,7 @@ public class ScoreManager : MonoBehaviour {
         scoreList.Add("Baleine", new ScoreElement(1f));
 
         randomStatList = new Dictionary<string, RandomStat>();
+        randomStatList.Add("Timer", new RandomStat());
         randomStatList.Add("Tirs Effectués", new RandomStat());
         randomStatList.Add("Tirs Réussis", new RandomStat());
         randomStatList.Add("Grenades Lancées", new RandomStat());

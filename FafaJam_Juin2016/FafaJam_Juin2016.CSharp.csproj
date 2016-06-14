@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Items\SpawnerItem.cs" />
     <Compile Include="Assets\Scripts\Mobs\Baleine.cs" />
     <Compile Include="Assets\Scripts\Mobs\BasicEnemy.cs" />
+    <Compile Include="Assets\Scripts\Mobs\BigOrno.cs" />
     <Compile Include="Assets\Scripts\Mobs\Blobfish.cs" />
     <Compile Include="Assets\Scripts\Mobs\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\Mobs\Raie.cs" />

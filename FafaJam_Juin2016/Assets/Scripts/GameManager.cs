@@ -16,9 +16,12 @@ public class GameManager : MonoBehaviour {
 
 	public SpawnerChief spawners;
 
+	public AudioClip bossBaleineMusic;
+	public AudioClip normalMusic;
+
 	void Start()
 	{
-		//Cursor.visible = false;
+		Cursor.visible = false;
 	}
 
 	void Update()
@@ -51,13 +54,19 @@ public class GameManager : MonoBehaviour {
 		GameObject.Find ("MainCamera").GetComponent<CameraManager> ().shakeAmount = 0.1f;
 		GameObject.Find ("MainCamera").GetComponent<CameraManager> ().setShake (3.5f);
 		yield return new WaitForSeconds (1f);
+		this.GetComponent<AudioSource> ().Stop ();
 		var puTransform = Instantiate(baleine) as Transform;
+		yield return new WaitForSeconds (2f);
+		this.GetComponent<AudioSource> ().clip = bossBaleineMusic;
+		this.GetComponent<AudioSource> ().Play ();
 	}
 
 	public IEnumerator returnFromBossSequence(){
 		this.GetComponent<CameraEffectDezoom> ().isLaunch = true;
 		spawners.pauseSpawn = false;
-		yield return new WaitForSeconds (1f);
+		this.GetComponent<AudioSource> ().clip = normalMusic;
+		this.GetComponent<AudioSource> ().Play ();
+		yield return new WaitForSeconds (2f);
 	}
 		
 

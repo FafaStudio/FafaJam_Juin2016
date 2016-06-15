@@ -57,12 +57,14 @@
      <Compile Include="Assets\Scripts\Effects\Ombre.cs" />
      <Compile Include="Assets\Scripts\Effects\ScrollingScript.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\HighScore.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\Items\Item_Life_Bonus.cs" />
      <Compile Include="Assets\Scripts\Items\Item_Life_Malus.cs" />
      <Compile Include="Assets\Scripts\Items\SpawnerItem.cs" />
      <Compile Include="Assets\Scripts\Mobs\Baleine.cs" />
      <Compile Include="Assets\Scripts\Mobs\BasicEnemy.cs" />
+     <Compile Include="Assets\Scripts\Mobs\BigOrno.cs" />
      <Compile Include="Assets\Scripts\Mobs\Blobfish.cs" />
      <Compile Include="Assets\Scripts\Mobs\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\Mobs\Raie.cs" />

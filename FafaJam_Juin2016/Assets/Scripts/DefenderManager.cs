@@ -30,7 +30,7 @@ public class DefenderManager : MonoBehaviour {
     public void grenade()
     {
 		Vector2 direction;
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetButton("SecondWeapon")) 
         {
             if (playerManager.getSwapPosition())//tireur a gauche
             {

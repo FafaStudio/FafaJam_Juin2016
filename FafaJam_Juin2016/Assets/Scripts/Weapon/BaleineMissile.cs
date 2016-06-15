@@ -24,7 +24,7 @@ public class BaleineMissile : MonoBehaviour {
     public IEnumerator startDeath(){
         this.GetComponent<SpriteRenderer>().sprite = null;
 		this.GetComponent<Animator> ().Stop ();
-        this.GetComponent<Explosion>().launchExplosion(this.gameObject);
+        this.GetComponent<Explosion>().launchExplosion(this.gameObject, false);
         yield return new WaitForSeconds(0.2f);
         var puTransform = Instantiate(fumeParticle) as Transform;
         puTransform.position = this.transform.position;

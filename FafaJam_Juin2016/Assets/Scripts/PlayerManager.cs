@@ -73,11 +73,11 @@ public class PlayerManager : MonoBehaviour {
 //MOVEMENT________________________________________________________________________________________________________________
 
 	private void calculMovement(){
-		if (Input.GetKey (KeyCode.D)) {//mouvements latéraux
+		if (Input.GetButton("RightMovement")) {//mouvements latéraux
 			speed.x = movementX;
 			attacker.GetComponent<AttackerManager>().setAnimation ("RightButton", true);
 			attacker.GetComponent<AttackerManager>().setAnimation ("LeftButton", false);
-		} else if (Input.GetKey (KeyCode.Q)) {
+		} else if (Input.GetButton("LeftMovement"))  {
 			speed.x = -movementX;
 			attacker.GetComponent<AttackerManager>().setAnimation ("RightButton", false);
 			attacker.GetComponent<AttackerManager>().setAnimation ("LeftButton", true);
@@ -87,7 +87,7 @@ public class PlayerManager : MonoBehaviour {
 			speed.x = 0;
 		}
 
-        if ((Input.GetKey(KeyCode.Space) && !isJumping))//Jump
+		if ((Input.GetButtonDown("Jump"))  && !isJumping)//Jump
         {
             speed.y = movementY;
             isJumping = true;
@@ -113,7 +113,7 @@ public class PlayerManager : MonoBehaviour {
 		this.enabled = false;
 		Destroy (attacker);
 		Destroy (defender);
-		this.GetComponent<Explosion> ().launchExplosion (this.gameObject);
+		this.GetComponent<Explosion> ().launchExplosion (this.gameObject, false);
 		uiManager.launchGameOverPanel ();
 		uiManager.displayFinalScore (GameObject.Find ("GameManager").GetComponent<GameManager>().scoreManager.score);
 		GameObject.Find ("GameManager").GetComponent<GameManager> ().isPaused = true;

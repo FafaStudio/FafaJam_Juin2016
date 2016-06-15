@@ -70,7 +70,7 @@ public class AttackerManager : MonoBehaviour {
 
     public void shoot()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+		if (Input.GetButton("FirstWeapon"))
         {
             Vector3 mousePosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
             Vector3 playerPosition = gameObject.transform.position;

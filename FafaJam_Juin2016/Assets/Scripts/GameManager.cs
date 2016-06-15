@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
 			sourceAudio.Play();
 		}
 
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+		if (Input.GetButtonDown("Pause")) {
 			if (isPaused)
 				resumeGame ();
 			else

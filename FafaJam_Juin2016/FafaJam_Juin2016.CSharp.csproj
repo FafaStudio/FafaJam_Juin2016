@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Weapon\OursinScript.cs" />
     <Compile Include="Assets\Scripts\Weapon\ShotScript.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponManager.cs" />
+    <Compile Include="Assets\Scripts\splashImage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

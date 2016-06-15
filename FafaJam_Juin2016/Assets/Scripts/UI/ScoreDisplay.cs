@@ -25,7 +25,6 @@ public class ScoreDisplay : MonoBehaviour {
     public void displayScores()
     {
         GameObject actualTextDisplayer;
-        print(scoreManager.scoreToString());
         foreach (string score in scoreManager.scoreToString())
         {
             actualTextDisplayer = Instantiate(textDisplayer);

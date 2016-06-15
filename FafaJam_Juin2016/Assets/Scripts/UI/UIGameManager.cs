@@ -7,7 +7,6 @@ public class UIGameManager : MonoBehaviour {
 
 	public GameObject pausePanel;
     public GameObject gameOverPanel;
-    public GameObject statsPanel;
 	public GameObject howToPanel;
 
     public Text finalScoreText;

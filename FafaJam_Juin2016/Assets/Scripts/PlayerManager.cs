@@ -113,8 +113,14 @@ public class PlayerManager : MonoBehaviour {
 		this.enabled = false;
 		Destroy (attacker);
 		Destroy (defender);
+<<<<<<< HEAD
 		this.GetComponent<Explosion> ().launchExplosion (this.gameObject, false);
 		uiManager.launchGameOverPanel ();
+=======
+		this.GetComponent<Explosion> ().launchExplosion (this.gameObject);
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<HighScore>().addScore((int)GameObject.Find("GameManager").GetComponent<GameManager>().scoreManager.score);
+        uiManager.launchGameOverPanel ();
+>>>>>>> e3ff4b5d190ec4f680291f192629e8223f03f449
 		uiManager.displayFinalScore (GameObject.Find ("GameManager").GetComponent<GameManager>().scoreManager.score);
 		GameObject.Find ("GameManager").GetComponent<GameManager> ().isPaused = true;
 		GameObject.Find ("GameManager").GetComponent<GameManager> ().sourceAudio.clip = GameObject.Find ("GameManager").GetComponent<GameManager> ().gameOverMusic;

@@ -25,7 +25,7 @@ public class HighScore : MonoBehaviour {
             PlayerPrefs.SetInt(highScoreNames[i], 0);
         }
     }
-    void addScore(int newScore)
+    public void addScore(int newScore)
     {
         for (int i = 0; i < highScoreNames.Length; i++)
         {
@@ -57,7 +57,6 @@ public class HighScore : MonoBehaviour {
         string[] highScoreStringed = new string[highScoreNames.Length];
         for (int i = 0; i < highScoreNames.Length; i++)
         {
-            print(highScoreNames[i] + " : " + PlayerPrefs.GetInt(highScoreNames[i]));
             highScoreStringed[i] = highScoreNames[i] + " : " + PlayerPrefs.GetInt(highScoreNames[i]);
         }
         return highScoreStringed;

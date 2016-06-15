@@ -109,7 +109,6 @@ public class GameManager : MonoBehaviour {
 
 	public void launchPaused(){
 		sourceAudio.volume = 0.4f;
-        GameObject.FindGameObjectWithTag("ScoreDisplayer").GetComponent<ScoreDisplay>().displayScores();
 		uiManager.launchPausePanel ();
 		isPaused = true;
 		Cursor.visible = true;
@@ -125,7 +124,6 @@ public class GameManager : MonoBehaviour {
 
 	public void resumeGame(){
 		sourceAudio.volume = 0.7f;
-        GameObject.FindGameObjectWithTag("ScoreDisplayer").GetComponent<ScoreDisplay>().unDisplayScores();
 		uiManager.quitPausePanel ();
         isPaused = false;
 		Cursor.visible = false;

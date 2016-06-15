@@ -86,7 +86,7 @@
      <Compile Include="Assets\Scripts\Weapon\OursinScript.cs" />
      <Compile Include="Assets\Scripts\Weapon\ShotScript.cs" />
      <Compile Include="Assets\Scripts\Weapon\WeaponManager.cs" />
-     <Compile Include="Assets\splashImage.cs" />
+     <Compile Include="Assets\Scripts\splashImage.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

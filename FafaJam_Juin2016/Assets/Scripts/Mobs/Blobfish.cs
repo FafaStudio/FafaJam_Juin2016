@@ -6,7 +6,10 @@ public class Blobfish : EnemyScript {
 
 	public float rotation = 100f;
 
+	private AudioSource soundDisplayer;
+
 	void Start () {
+		soundDisplayer = this.GetComponent<AudioSource> ();
         enemyName = "Blobfish";  
 		if (target == null)
 			return;
@@ -24,9 +27,15 @@ public class Blobfish : EnemyScript {
 		base.OnTriggerEnter2D (coll);
 		if (coll.gameObject.tag == "Sol") {
 			this.GetComponent<MovementScript> ().direction = new Vector2 (this.GetComponent<MovementScript> ().direction.x, -this.GetComponent<MovementScript> ().direction.y);
+			soundDisplayer.Play ();
 		}
 		if (coll.gameObject.tag == "Player") {
+			soundDisplayer.Play ();
 			Destroy (this.gameObject);
+		}
+		if (coll.gameObject.tag == "Bouclier") {
+			soundDisplayer.Play ();
+			this.GetComponent<MovementScript> ().direction = new Vector2 (this.GetComponent<MovementScript> ().direction.x, -this.GetComponent<MovementScript> ().direction.y);
 		}
 	}
 

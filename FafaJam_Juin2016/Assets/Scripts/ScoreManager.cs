@@ -77,7 +77,7 @@ public class ScoreManager : MonoBehaviour {
         scoreList.Add("Raie", new ScoreElement(500f));
         scoreList.Add("Blobfish", new ScoreElement(100f));
         scoreList.Add("BigOrno", new ScoreElement(300f));
-        scoreList.Add("Baleine", new ScoreElement(1f));
+        scoreList.Add("Baleine", new ScoreElement(10000f));
 
         randomStatList = new Dictionary<string, RandomStat>();
         randomStatList.Add("Timer", new RandomStat());
@@ -102,8 +102,6 @@ public class ScoreManager : MonoBehaviour {
     {
         randomStatList[statType].incremente();
     }
-
-
 
     public float calculScore()
     {
@@ -135,6 +133,7 @@ public class ScoreManager : MonoBehaviour {
         }
         return stringed;
     }
+
     public string[] scoreToString()
     {
         if (scoreList == null)

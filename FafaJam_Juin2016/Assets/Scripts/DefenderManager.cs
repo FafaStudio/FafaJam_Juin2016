@@ -59,4 +59,11 @@ public class DefenderManager : MonoBehaviour {
 			timeBetweenBuble = Random.Range (2f, 4f);
 		}
 	}
+
+	public void takeDamage(int degats){
+		playerManager.takeDamage(degats);
+		GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Dégâts Subies");
+		playerManager.camera.setShake (0.05f);
+		StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
+	}
 }

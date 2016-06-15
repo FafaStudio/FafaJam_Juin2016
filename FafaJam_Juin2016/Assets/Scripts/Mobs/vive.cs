@@ -17,7 +17,7 @@ public class vive : MonoBehaviour {
 
 	public void launchElecParticle(GameObject cible){
 		var pu = Instantiate (elecEffect, new Vector3 (cible.transform.position.x , cible.transform.position.y ), Quaternion.identity) as Transform;
-		//pu.SetParent (cible.transform);
+	//	pu.SetParent (cible.transform);
 	}
 
 	void OnTriggerEnter2D(Collider2D coll)
@@ -26,13 +26,13 @@ public class vive : MonoBehaviour {
 			return;
 		if((coll.gameObject.name == "Attacker")){
 			launchElecParticle (coll.gameObject);
-			coll.gameObject.GetComponent<AttackerManager>().launchHitAnim();
+			coll.gameObject.GetComponent<AttackerManager> ().takeDamage (1);
 			coll.gameObject.GetComponentInParent<PlayerManager> ().swap ();
 			hasSwapPlayer = true;
 		}
 		if((coll.gameObject.name == "Defender")){
 			launchElecParticle (coll.gameObject);
-			//coll.gameObject.GetComponent<AttackerManager>().launchHitAnim();
+			coll.gameObject.GetComponent<DefenderManager> ().takeDamage (1);
 			coll.gameObject.GetComponentInParent<PlayerManager> ().swap ();
 			hasSwapPlayer = true;
 		}

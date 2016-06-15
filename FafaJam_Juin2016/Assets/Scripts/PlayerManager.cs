@@ -41,10 +41,6 @@ public class PlayerManager : MonoBehaviour {
 
 	public CameraManager camera;
 
-
-	public AudioClip musicPerso;
-	public AudioClip zikMort;
-
 //AWAKE, START, UPDATE...______________________________________________________________________________________________
 
 	void Awake(){
@@ -53,8 +49,8 @@ public class PlayerManager : MonoBehaviour {
 		uiManager = GameObject.Find ("UI_Canvas").GetComponent<UIGameManager> ();
 		camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
 		hpUI.value = (curPv / maxPv) ;
-		//camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
 	}
+
 	void Start () {
 		body = GetComponent<Rigidbody2D> ();
 		ombres= this.GetComponentsInChildren<Ombre> ();
@@ -74,7 +70,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 
-	//MOVEMENT________________________________________________________________________________________________________________
+//MOVEMENT________________________________________________________________________________________________________________
 
 	private void calculMovement(){
 		if (Input.GetKey (KeyCode.D)) {//mouvements latéraux
@@ -190,7 +186,7 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
-    //SWAP POSITION______________________________________________________________________________________________________________
+//SWAP POSITION______________________________________________________________________________________________________________
 
     public bool getSwapPosition()
     {
@@ -235,10 +231,7 @@ public class PlayerManager : MonoBehaviour {
         }
     }
     
-
-    
-
-	//GESTION VIE________________________________________________________________________________________________________________
+//GESTION VIE________________________________________________________________________________________________________________
 
     public int getPv()
     {
@@ -273,9 +266,7 @@ public class PlayerManager : MonoBehaviour {
 		hpUI.value = ((float)this.curPv / (float)this.maxPv) ;
 	}
 
-
-
-	//COLLISION________________________________________________________________________________________________________________
+//COLLISION________________________________________________________________________________________________________________
 
     public void OnCollisionEnter2D(Collision2D col)
     {
@@ -288,7 +279,6 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-
     public void attackerCollideSol()
     {
         isJumping = false;
@@ -298,20 +288,6 @@ public class PlayerManager : MonoBehaviour {
         attacker.GetComponent<AttackerManager>().arms[1].GetComponent<Animator>().SetBool("isJumping", false);
         setOmbre(true);
     }
-
-	public void shoot(){
-		/*if (Input.GetKey (KeyCode.Space)) {
-			animManager.SetBool ("Firing", true);
-			if (weapon.Length != 0)
-			{
-				for (int i = 0; i < weapon.Length; i++) {
-					weapon[i].AttackWithCustomPosition (this.levelHero);
-				}
-			}
-		}
-		if(Input.GetKeyUp(KeyCode.Space))
-			animManager.SetBool("Firing", false);*/
-	} 
 
 	void OnPauseGame(){
 		this.enabled = false;

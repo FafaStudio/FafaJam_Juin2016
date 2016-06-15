@@ -137,16 +137,20 @@ public class AttackerManager : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D coll)
 	{
 		if (coll.gameObject.tag == "enemyBullet") {
-            playerManager.takeDamage(1);
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Dégâts Subies");
+			takeDamage (1);
             Destroy (coll.gameObject);
-			playerManager.camera.setShake (0.05f);
-			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
-			launchHitAnim ();
 			if (playerManager.getPv() <= 0) {
 				StartCoroutine (playerManager.startDeath ());
 			}
 		}
+	}
+
+	public void takeDamage(int degats){
+		playerManager.takeDamage(degats);
+		GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Dégâts Subies");
+		playerManager.camera.setShake (0.05f);
+		StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
+		launchHitAnim ();
 	}
 
 	public void launchHitAnim(){

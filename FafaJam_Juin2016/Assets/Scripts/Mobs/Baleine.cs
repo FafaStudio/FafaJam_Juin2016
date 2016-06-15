@@ -9,7 +9,7 @@ public class Baleine : EnemyScript {
 	private Animator animManager;
 
 	public float cptBaleine = 10f;
-	public float cptTimeBetweenAttack = 3f;
+	public float cptTimeBetweenAttack = 4f;
 	public bool isSwitch = false;
 
 
@@ -48,23 +48,32 @@ public class Baleine : EnemyScript {
 	public override void OnTriggerEnter2D(Collider2D coll)
 	{
 		if (coll.gameObject.tag == "TIRPlayer") {
-			this.pv -= 1;
+			takeDamage (1);
 			Destroy (coll.gameObject);
-			if ((this.pv <= 100)&&(!isSwitch)) {
-				StartCoroutine (switchPosition ());
-			}
-			
-			if (this.pv <= 0) {
-				StartCoroutine (launchDeath ());
-			}
-			StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
         }
+	}
+
+	public void takeDamage(int degats){
+		this.pv -= degats;
+		GameObject.Find ("UI_Canvas").GetComponent<UIGameManager> ().updateBossLife ((float)this.pv, 300f);
+		if ((this.pv <= 100)&&(!isSwitch)) {
+			StartCoroutine (switchPosition ());
+		}
+
+		if (this.pv <= 0) {
+			StartCoroutine (launchDeath ());
+		}
+		StartCoroutine (this.GetComponent<HitColorChange>().launchHit());
 	}
 
 	public IEnumerator switchPosition(){
 		isStopped = true;
 		this.GetComponent<CircleCollider2D> ().enabled = false;
 		animManager.SetTrigger ("switchPosition");
+		AudioSource music = GameObject.Find ("GameManager").GetComponent<GameManager> ().sourceAudio;
+		music.clip = GameObject.Find ("GameManager").GetComponent<GameManager> ().bossBaleineVener;
+		music.Play ();
+		music.loop = true;
 		yield return new WaitForSeconds (6f);
 		this.GetComponent<CircleCollider2D> ().enabled = true;
 		this.GetComponent<CircleCollider2D> ().offset = new Vector2 (0f, 0f);
@@ -76,6 +85,8 @@ public class Baleine : EnemyScript {
 	public IEnumerator launchDeath(){
 		this.GetComponent<CircleCollider2D> ().enabled = false;
 		animManager.SetTrigger ("isDead");
+		GameObject.Find ("MainCamera").GetComponent<CameraManager> ().shakeAmount = 0.1f;
+		GameObject.Find ("MainCamera").GetComponent<CameraManager> ().setShake (3f);
 		yield return new WaitForSeconds (3f);
 		StartCoroutine (GameObject.Find ("GameManager").GetComponent<GameManager> ().returnFromBossSequence ());
 		Destroy (this.gameObject);

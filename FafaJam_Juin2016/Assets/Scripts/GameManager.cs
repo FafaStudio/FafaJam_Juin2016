@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
 	public ScoreManager scoreManager;
 
 	private int cptBoss = 1;
-	private int scoreForBoss = 10000;
+	public int scoreForBoss = 10000;
 
 	public UIGameManager uiManager;
 
@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour {
 
 		if (!sourceAudio.isPlaying)
 		{
+			if (launchBoss)
+				return;
 			sourceAudio.clip = normalMusic[Random.Range(0, normalMusic.Length)];
 			sourceAudio.Play();
 		}
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour {
 	public IEnumerator launchBossSequence(){
 		this.GetComponent<CameraEffectDezoom> ().isLaunch = true;
 		spawners.pauseSpawn = true;
+		uiManager.launchBossPanel ();
 		GameObject.Find ("MainCamera").GetComponent<CameraManager> ().shakeAmount = 0.1f;
 		GameObject.Find ("MainCamera").GetComponent<CameraManager> ().setShake (3.5f);
 		yield return new WaitForSeconds (1f);
@@ -86,15 +89,18 @@ public class GameManager : MonoBehaviour {
 		yield return new WaitForSeconds (2f);
 		this.GetComponent<AudioSource> ().clip = bossBaleineMusic;
 		this.GetComponent<AudioSource> ().Play ();
+		this.GetComponent<AudioSource> ().loop = true;
 	}
 
 	public IEnumerator returnFromBossSequence(){
 		cptBoss++;
+		uiManager.stopBossPanel ();
 		this.GetComponent<CameraEffectDezoom> ().isLaunch = true;
 		launchBoss = false;
 		spawners.pauseSpawn = false;
 		sourceAudio.clip = normalMusic[Random.Range(0, normalMusic.Length)];
 		sourceAudio.Play();
+		this.GetComponent<AudioSource> ().loop = false;
 		yield return new WaitForSeconds (1f);
 	}
 		

@@ -28,24 +28,24 @@ public class GrenadeScript : ShotScript {
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Sol" || col.gameObject.tag == "Enemy")
+		if (col.gameObject.tag == "Sol" || col.gameObject.tag == "Enemy" || col.gameObject.tag == "Boss")
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
             bool aTouche = false;
             for (int i = 0; i < colliders.Length; i++)
             {
-                if(colliders[i].tag == "Enemy")
-                {
-                    if (!aTouche)
-                    {
-                        aTouche = true;
-                        GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Grenades Réussies");
-                    }
+				if (colliders [i].tag == "Enemy") {
+					if (!aTouche) {
+						aTouche = true;
+						GameObject.FindGameObjectWithTag ("GameManager").GetComponent<ScoreManager> ().addStat ("Grenades Réussies");
+					}
 					Destroy (colliders [i].gameObject, 0.4f);
-                    StartCoroutine(colliders [i].GetComponent<EnemyScript> ().startDeath ());
-                    GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScoreManager>().addStat("Grenades Touchées");
+					StartCoroutine (colliders [i].GetComponent<EnemyScript> ().startDeath ());
+					GameObject.FindGameObjectWithTag ("GameManager").GetComponent<ScoreManager> ().addStat ("Grenades Touchées");
 
-                }
+				} else if (colliders [i].tag == "Boss") {
+					colliders [i].GetComponent<Baleine> ().takeDamage (5);
+				}
                 StartCoroutine (startExplosion ());
         }
     }

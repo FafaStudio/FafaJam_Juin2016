@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class UIGameManager : MonoBehaviour {
 
 	public GameObject pausePanel;
-	public GameObject gameOverPanel;
+    public GameObject gameOverPanel;
+    public GameObject statsPanel;
 
-	public Text finalScoreText;
+    public Text finalScoreText;
 
 	public GameObject bossPanel;
 
@@ -41,7 +42,26 @@ public class UIGameManager : MonoBehaviour {
 		Cursor.visible = true;
 	}
 
-	public void updateBossLife(float curPv, float maxPv){
+    public void displayStats()
+    {
+        gameOverPanel.transform.Find("BullePanel/BoutonsGameOver").gameObject.SetActive(false);
+        gameOverPanel.transform.Find("BullePanel/PlusInfoButton").gameObject.SetActive(false);
+        gameOverPanel.transform.Find("BullePanel/StatsContainer").gameObject.SetActive(true);
+        gameOverPanel.transform.Find("BullePanel/MinusInfoButton").gameObject.SetActive(true);
+        GameObject.FindGameObjectWithTag("ScoreDisplayer").GetComponent<ScoreDisplay>().displayScores();
+    }
+
+    public void unDisplayStats()
+    {
+        GameObject.FindGameObjectWithTag("ScoreDisplayer").GetComponent<ScoreDisplay>().unDisplayScores();
+        gameOverPanel.transform.Find("BullePanel/StatsContainer").gameObject.SetActive(false);
+        gameOverPanel.transform.Find("BullePanel/MinusInfoButton").gameObject.SetActive(false);
+        gameOverPanel.transform.Find("BullePanel/BoutonsGameOver").gameObject.SetActive(true);
+        gameOverPanel.transform.Find("BullePanel/PlusInfoButton").gameObject.SetActive(true);
+    }
+
+
+    public void updateBossLife(float curPv, float maxPv){
 		bossPanel.GetComponent<Slider>().value = ((float)curPv / (float)maxPv) ;
 	}
 		

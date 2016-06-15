@@ -12,22 +12,42 @@ public class GameManager : MonoBehaviour {
 
 	public Transform baleine;
 
-	public bool launchtest = false;
+	public bool launchBoss = false;
 
 	public SpawnerChief spawners;
 
 	public AudioClip bossBaleineMusic;
-	public AudioClip normalMusic;
+	public AudioClip bossBaleineVener;
+	public AudioClip[] normalMusic;
+	public AudioClip gameOverMusic;
+
+	public AudioSource sourceAudio;
+
+	public ScoreManager scoreManager;
+
+	private int cptBoss = 1;
+	private int scoreForBoss = 10000;
+
+	public UIGameManager uiManager;
 
 	void Start()
 	{
+		sourceAudio = this.GetComponent<AudioSource> ();
+		scoreManager = this.GetComponent<ScoreManager> ();
 		Cursor.visible = false;
+		sourceAudio.clip = normalMusic[Random.Range(0, normalMusic.Length)];
+		sourceAudio.Play();
 	}
 
 	void Update()
 	{
 		mouse = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
 
+		if (!sourceAudio.isPlaying)
+		{
+			sourceAudio.clip = normalMusic[Random.Range(0, normalMusic.Length)];
+			sourceAudio.Play();
+		}
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			if (isPaused)
@@ -35,10 +55,13 @@ public class GameManager : MonoBehaviour {
 			else
 				launchPaused ();
 		}
-		if (!launchtest)
-			return;
-		launchtest = false;
-		StartCoroutine(launchBossSequence());
+		if((getScore()>=(scoreForBoss))){
+			if (launchBoss)
+				return;
+			launchBoss = true;
+			scoreForBoss += 20000;
+			StartCoroutine (launchBossSequence ());
+		}
 	}
 
 	void OnGUI()
@@ -46,6 +69,10 @@ public class GameManager : MonoBehaviour {
 		if (isPaused)
 			return;
 		GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursorTexture);
+	}
+
+	public float getScore(){
+		return scoreManager.score;
 	}
 
 	public IEnumerator launchBossSequence(){
@@ -62,18 +89,22 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public IEnumerator returnFromBossSequence(){
+		cptBoss++;
 		this.GetComponent<CameraEffectDezoom> ().isLaunch = true;
+		launchBoss = false;
 		spawners.pauseSpawn = false;
-		this.GetComponent<AudioSource> ().clip = normalMusic;
-		this.GetComponent<AudioSource> ().Play ();
-		yield return new WaitForSeconds (2f);
+		sourceAudio.clip = normalMusic[Random.Range(0, normalMusic.Length)];
+		sourceAudio.Play();
+		yield return new WaitForSeconds (1f);
 	}
 		
 
 	//PAUSE_____________________________________________________________________________________________________________
 
 	public void launchPaused(){
+		sourceAudio.volume = 0.4f;
         GameObject.FindGameObjectWithTag("ScoreDisplayer").GetComponent<ScoreDisplay>().displayScores();
+		uiManager.launchPausePanel ();
 		isPaused = true;
 		Cursor.visible = true;
 		//musicLauncher.volume = 0.4f;
@@ -87,7 +118,9 @@ public class GameManager : MonoBehaviour {
 
 
 	public void resumeGame(){
+		sourceAudio.volume = 0.7f;
         GameObject.FindGameObjectWithTag("ScoreDisplayer").GetComponent<ScoreDisplay>().unDisplayScores();
+		uiManager.quitPausePanel ();
         isPaused = false;
 		Cursor.visible = false;
 		//musicLauncher.volume = 1f;

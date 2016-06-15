@@ -77,6 +77,8 @@
      <Compile Include="Assets\Scripts\Spawners\ViveSpwaner.cs" />
      <Compile Include="Assets\Scripts\UI\LifeDisplay.cs" />
      <Compile Include="Assets\Scripts\UI\ScoreDisplay.cs" />
+     <Compile Include="Assets\Scripts\UI\UIGameManager.cs" />
+     <Compile Include="Assets\Scripts\UIMainMenu.cs" />
      <Compile Include="Assets\Scripts\Weapon\BaleineMissile.cs" />
      <Compile Include="Assets\Scripts\Weapon\GrenadeScript.cs" />
      <Compile Include="Assets\Scripts\Weapon\OursinScript.cs" />

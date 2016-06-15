@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour {
 	private int curPv;
 
 	public Slider hpUI;
+	public UIGameManager uiManager;
 
 
     private bool swapped = false;
@@ -36,9 +37,6 @@ public class PlayerManager : MonoBehaviour {
 
 	public Transform fumeParticle;
 
-	//private WeaponManager[] weapon;
-
-
 	Rigidbody2D body;
 
 	public CameraManager camera;
@@ -52,6 +50,7 @@ public class PlayerManager : MonoBehaviour {
 	void Awake(){
 		curPv = maxPv;
 		hpUI = GameObject.Find ("HpSlider").GetComponent<Slider> ();
+		uiManager = GameObject.Find ("UI_Canvas").GetComponent<UIGameManager> ();
 		camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
 		hpUI.value = (curPv / maxPv) ;
 		//camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
@@ -113,17 +112,21 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-	public virtual IEnumerator startDeath(){
+	public IEnumerator startDeath(){
 		isDead = true;
 		this.enabled = false;
 		Destroy (attacker);
 		Destroy (defender);
 		this.GetComponent<Explosion> ().launchExplosion (this.gameObject);
+		uiManager.launchGameOverPanel ();
+		uiManager.displayFinalScore (GameObject.Find ("GameManager").GetComponent<GameManager>().scoreManager.score);
+		GameObject.Find ("GameManager").GetComponent<GameManager> ().isPaused = true;
+		GameObject.Find ("GameManager").GetComponent<GameManager> ().sourceAudio.clip = GameObject.Find ("GameManager").GetComponent<GameManager> ().gameOverMusic;
+		GameObject.Find ("GameManager").GetComponent<GameManager> ().sourceAudio.Play ();
 		yield return new WaitForSeconds (0.2f);
 		var puTransform = Instantiate (fumeParticle) as Transform;
 		puTransform.position = this.transform.position;
-		yield return new WaitForSeconds (0.2f);
-		print ("bisous");
+		uiManager.launchGameOverPanel ();
 		Destroy (this.gameObject);
 	}
 

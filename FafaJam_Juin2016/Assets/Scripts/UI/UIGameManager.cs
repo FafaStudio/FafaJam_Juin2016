@@ -8,6 +8,7 @@ public class UIGameManager : MonoBehaviour {
 	public GameObject pausePanel;
     public GameObject gameOverPanel;
     public GameObject statsPanel;
+	public GameObject howToPanel;
 
     public Text finalScoreText;
 
@@ -35,6 +36,13 @@ public class UIGameManager : MonoBehaviour {
 	}
 	public void quitPausePanel(){
 		pausePanel.SetActive (false);
+	}
+
+	public void launchHowToPanel(){
+		howToPanel.SetActive (true);
+	}
+	public void quitHowToPanel(){
+		howToPanel.SetActive (false);
 	}
 
 	public void launchGameOverPanel(){

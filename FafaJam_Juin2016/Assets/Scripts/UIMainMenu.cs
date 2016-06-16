@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIMainMenu : MonoBehaviour {
 
 	private GameObject mainPanel;
+	public GameObject howToPanel;
 
 	void Start(){
 		mainPanel = GameObject.Find ("BullePanel");
@@ -24,6 +25,15 @@ public class UIMainMenu : MonoBehaviour {
 
 	public void launchGame(){
 		SceneManager.LoadScene ("Game");
+	}
+
+	public void launchHowToPanel(){
+		howToPanel.SetActive (true);
+
+	}
+	public void quitHowToPanel(){
+		howToPanel.SetActive (false);
+
 	}
 
 }

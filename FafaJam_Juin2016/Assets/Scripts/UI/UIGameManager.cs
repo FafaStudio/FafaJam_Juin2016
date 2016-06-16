@@ -35,6 +35,7 @@ public class UIGameManager : MonoBehaviour {
 	}
 	public void quitPausePanel(){
 		pausePanel.SetActive (false);
+		howToPanel.SetActive (false);
 	}
 
 	public void launchHowToPanel(){
